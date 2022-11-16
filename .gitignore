@@ -1,0 +1,12 @@
+/client/.env.local
+/client/.env
+/client/node_modules
+/client/package-lock.json
+client/yarn.lock
+
+# server
+/server/.env
+/server/node_modules
+/server/package-lock.json
+/server/yarn.lock
+
