@@ -1,9 +1,16 @@
-import { useState } from "react";
-
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Nav from "./components/Nav";
+import Home from "./pages/Home";
+import Profile from "./pages/Profile";
 function App() {
   return (
     <>
-      <h1>Hello</h1>
+      <Nav />
+      <Routes>
+        <Route exact path="/" element={<Home />}></Route>
+        <Route exact path="/profile" element={<Profile />}></Route>
+      </Routes>
     </>
   );
 }

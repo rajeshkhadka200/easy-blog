@@ -1,0 +1,47 @@
+.features {
+  padding: 0 70px;
+  text-align: center;
+  margin-bottom: 80px;
+}
+.features .heading {
+  padding-bottom: 30px;
+}
+.heading h2 {
+  font-size: 30px;
+}
+.features .card_con {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.card_con .card {
+  background: #222326;
+  padding: 20px;
+  min-height: 150px;
+  max-width: 300px;
+  border-radius: 5px;
+  text-align: left;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+.card:hover {
+  transform: scale(1.03);
+}
+.card .icon {
+  height: 35px;
+  width: 35px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--primary-btn);
+}
+
+.card h3 {
+  padding: 8px 0;
+}
+
+.card p {
+  font-size: 13px;
+}
