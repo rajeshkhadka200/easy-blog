@@ -16,7 +16,6 @@ const Hero = () => {
           </div>
         </div>
         <div className={style.right}>
-          {/* <img src="/hero_img.svg" alt="no img" /> */}
           <div className={style.box}></div>
         </div>
       </div>

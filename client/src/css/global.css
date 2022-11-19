@@ -41,12 +41,25 @@ button {
 button:hover {
   opacity: 1;
 }
+input {
+  border: 0;
+  outline: 0;
+}
 /* colours and themes */
 :root {
-  --p-color: #fff;
-  --primary-bg: #0c0c0c;
-  --sec-bg: #292931;
+  --primary-bg: #000000;
+  --sec-bg: #171717;
   --primary-btn: #5865f2;
-  --border: rgba(51, 51, 51, 0.543);
+  --link-hover: rgba(128, 128, 128, 0.116);
+  --border: rgba(51, 51, 51, 0.466);
   --scroll: #3a474b;
+  --p-color: #fff;
+}
+/* sidebar styling */
+
+.sidebar_con {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  padding-top: 80px;
 }

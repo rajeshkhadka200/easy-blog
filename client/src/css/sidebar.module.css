@@ -1,0 +1,31 @@
+.sidebar {
+  position: sticky;
+  top: 80px;
+  left: 0;
+  min-height: calc(100vh - 80px);
+  height: 100%;
+  min-width: 250px;
+  background-color: var(--sec-bg);
+  padding: 10px 0;
+  border-radius: 5px;
+}
+.sidebar .logo {
+  padding-bottom: 30px;
+  padding-left: 20px;
+}
+
+.sidebar .links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.links a {
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.links a:hover {
+  background-color: var(--link-hover);
+}

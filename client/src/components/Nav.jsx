@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AiFillGithub } from "react-icons/ai";
 // css and files
 import styles from "../css/nav.module.css";
+import { FaDribbble } from "react-icons/fa";
 import { useState } from "react";
 const Nav = () => {
   const [isLogin, setisLogin] = useState(true);
@@ -10,7 +11,12 @@ const Nav = () => {
     <>
       <nav>
         <div className={styles.logo}>
-          <Link to="/">Logo</Link>
+          <Link to="/">
+            <span className={styles.brand}>
+              <FaDribbble />
+            </span>
+            Easy Blog
+          </Link>
         </div>
         <div className={styles.links}>
           {isLogin ? (

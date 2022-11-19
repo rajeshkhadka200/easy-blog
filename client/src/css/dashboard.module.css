@@ -1,0 +1,32 @@
+.dash_left_side_content {
+  width: 100%;
+  padding: 0 20px 0 0;
+}
+.dash_left_side_content .header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 15px;
+}
+
+.dash_left_side_content .header input {
+  background-color: var(--sec-bg);
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  color: #fff;
+  padding: 8px 10px;
+  width: 265px;
+}
+
+.header .search button {
+  background-color: var(--primary-btn);
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  height: 100%;
+  padding: 0 10px;
+}
+
+.dash_card_con {
+  margin-top: 20px;
+}

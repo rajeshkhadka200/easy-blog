@@ -2,8 +2,8 @@ nav {
   z-index: 100;
   width: 100%;
   height: 70px;
-  /* background: var(--sec-bg); */
-  background-color: #222326;
+  background: var(--sec-bg);
+  /* background-color: #222326; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,7 +15,21 @@ nav {
 }
 nav .logo a {
   color: var(--p-color);
-  font-size: 20px;
+  font-size: 25px;
+  font-weight: 600;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.logo .brand {
+  background-color: var(--primary-btn);
+  height: 35px;
+  width: 35px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 nav .links {
   display: flex;

@@ -12,14 +12,15 @@
 .features .card_con {
   display: flex;
   gap: 30px;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: wrap;
 }
 .card_con .card {
-  background: #222326;
+  /* background: #222326; */
+  background-color: var(--sec-bg);
   padding: 20px;
   min-height: 150px;
-  max-width: 300px;
+  max-width: 350px;
   border-radius: 5px;
   text-align: left;
   transition: 0.3s ease;

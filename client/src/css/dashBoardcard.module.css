@@ -1,0 +1,29 @@
+.dash_card {
+  background-color: var(--sec-bg);
+  width: 90%;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid var(--border);
+  min-height: 250px;
+  margin-bottom: 20px;
+  border-radius: 3px;
+}
+
+.left {
+  flex-basis: 70%;
+}
+.left h3 {
+  font-size: 25px;
+  padding-bottom: 20px;
+}
+.left p {
+  font-size: 16px;
+}
+
+.right img {
+  height: 150px;
+  width: 250px;
+  border-radius: 5px;
+  object-fit: cover;
+}
