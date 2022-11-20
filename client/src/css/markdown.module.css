@@ -1,0 +1,68 @@
+.markdownCon {
+  margin-top: 70px;
+  padding: 20px 40px;
+}
+.markdownCon .header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.btnGrp {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.header .addBtn {
+  height: fit-content;
+  width: fit-content;
+  padding: 10px 20px;
+  border: 1px solid var(--border);
+  border-radius: 50vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+#rm_btn {
+  color: #ff0000;
+}
+.header .addBtn:hover {
+  background-color: var(--link-hover);
+  cursor: pointer;
+}
+.header button {
+  background-color: var(--primary-btn);
+  padding: 10px 20px;
+  border-radius: 50vw;
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.markdownCon .title {
+  margin-top: 35px;
+}
+.title textarea {
+  outline: 0;
+  border: 0;
+  color: #fff;
+  font-size: 35px;
+  background: transparent;
+  font-weight: 700;
+  width: 100%;
+  resize: none;
+  margin-bottom: 5px;
+}
+.title textarea::placeholder {
+  color: grey;
+  font-family: "Poppins", sans-serif;
+}
+.markdownCon img {
+  height: 200px;
+  width: 300px;
+  object-fit: contain;
+  border: 1px solid var(--border);
+  margin-bottom: 5px;
+}

@@ -51,15 +51,19 @@ input {
   --sec-bg: #171717;
   --primary-btn: #5865f2;
   --link-hover: rgba(128, 128, 128, 0.116);
-  --border: rgba(51, 51, 51, 0.466);
+  --border: rgba(51, 51, 51, 0.479);
   --scroll: #3a474b;
   --p-color: #fff;
+  --semi_gray: #f1f2fa;
 }
 /* sidebar styling */
 
 .sidebar_con {
   display: flex;
   width: 100%;
-  gap: 20px;
+  gap: 30px;
   padding-top: 80px;
+}
+svg {
+  padding-left: 0;
 }

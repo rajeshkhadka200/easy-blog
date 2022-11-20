@@ -1,7 +1,7 @@
 import React from "react";
-import DashBoardcard from "../components/DashBoardcard";
 import Sidebar from "../components/Sidebar";
 import style from "../css/dashboard.module.css";
+import Table from "../components/Table";
 
 const Dashboard = () => {
   return (
@@ -16,13 +16,10 @@ const Dashboard = () => {
               <button>search</button>
             </div>
           </div>
+          <div className={style.after_border}></div>
           {/* render the cards */}
           <div className={style.dash_card_con}>
-            <DashBoardcard />
-            <DashBoardcard />
-            <DashBoardcard />
-            <DashBoardcard />
-            <DashBoardcard />
+            <Table />
           </div>
         </div>
       </div>

@@ -16,7 +16,9 @@ const Hero = () => {
           </div>
         </div>
         <div className={style.right}>
-          <div className={style.box}></div>
+          <div className={style.box}>
+            <img src="/hero.png" alt="" />
+          </div>
         </div>
       </div>
     </>
