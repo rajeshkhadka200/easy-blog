@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { CiShare1 } from "react-icons/ci";
 import { BiImageAdd } from "react-icons/bi";
 import { AiOutlineDelete } from "react-icons/ai";
@@ -6,16 +6,30 @@ import style from "../css/markdown.module.css";
 import Editor from "../components/Editor";
 
 import PopupContainer from "../components/PopupContainer";
+import { ContexStore } from "../context/Context";
 
 const Markdown = () => {
-  const [showPopup, setShowPopup] = useState(true);
+  //  context provider
+  const { modal } = useContext(ContexStore);
+  const [ispopUp, setispopUp] = modal;
+
+  // handle for popup
+  const open = () => {
+    document.body.style.overflow = "hidden";
+    setispopUp(!ispopUp);
+  };
+
+  // state for image cover upload
   const [cover, setCover] = useState({
     url: "",
     img: "",
   });
+
+  // function to handle image cover upload
   const handleImg = () => {
     let input = document.createElement("INPUT");
     input.setAttribute("type", "file");
+    input.setAttribute("accept", "image/*");
     input.click();
     input.addEventListener("change", (e) => {
       setCover({
@@ -24,6 +38,8 @@ const Markdown = () => {
       });
     });
   };
+
+  // function to handle image cover delete
   const removeCover = () => {
     setCover({
       url: "",
@@ -32,7 +48,7 @@ const Markdown = () => {
   };
   return (
     <>
-      {showPopup && <PopupContainer heading={"Where to publish Article ?"} />}
+      {ispopUp && <PopupContainer heading={"Publish this article on ?"} />}
       <div className={style.markdownCon}>
         {cover.url ? <img src={cover.url} alt="image" /> : ""}
         <div className={style.header}>
@@ -53,7 +69,7 @@ const Markdown = () => {
               </div>
             )}
           </div>
-          <button>
+          <button onClick={open}>
             <CiShare1 fontSize={20} />
             Publish
           </button>

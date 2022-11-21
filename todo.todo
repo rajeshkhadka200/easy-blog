@@ -6,9 +6,15 @@ TDODS:
         ✔ Footer @done(22-11-20 19:26)
         ✔ Dashboard @done(22-11-20 19:26)
         ✔ markdown @done(22-11-20 17:49)
-        ☐ modal for generating room id 
+        ✔ modal for generating room id @done(22-11-21 14:19)
         ☐ active link
         ☐ realtime blogging experience 
         ☐ community blog
         ☐ profile
         ☐ collect api keys
+        ☐ starter modal
+
+    Bug Fix on:
+    ✔ markdown pupup @done(22-11-21 14:19)
+    ✔ sidebar @done(22-11-21 14:19)
+    ☐ Dashboard delete icons

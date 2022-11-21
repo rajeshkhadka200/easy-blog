@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import Sidebar from "../components/Sidebar";
 import style from "../css/dashboard.module.css";
 import Table from "../components/Table";
 import DashBoardHeader from "../components/DashBoardHeader";
+import { ContexStore } from "../context/Context";
 
 const Dashboard = () => {
+  const { modal } = useContext(ContexStore);
   return (
     <>
       <div className="sidebar_con">
