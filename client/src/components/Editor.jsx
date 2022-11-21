@@ -3,8 +3,6 @@ import MDEditor from "@uiw/react-md-editor";
 import style from "../css/editor.module.css";
 const Editor = () => {
   const [value, setValue] = React.useState();
-
-  console.log(value);
   return (
     <>
       <MDEditor

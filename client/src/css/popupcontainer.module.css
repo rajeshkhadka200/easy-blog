@@ -1,0 +1,36 @@
+.popup_overlay_container {
+  height: 100%;
+  width: 100%;
+  background-color: #000000b0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+.actual_popup {
+  height: fit-content;
+  width: 350px;
+  /* padding: 10px; */
+  border: 1px solid var(--border);
+  background-color: var(--sec-bg);
+  border-radius: 5px;
+  animation: anim 0.5s ease;
+}
+@keyframes anim {
+  0% {
+    transform: translateY(-100px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+.header {
+  padding: 10px 10px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 10px;
+}

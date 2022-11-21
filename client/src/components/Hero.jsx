@@ -1,5 +1,6 @@
 import React from "react";
 import style from "../css/hero.module.css";
+import PopupContainer from "./PopupContainer";
 const Hero = () => {
   return (
     <>

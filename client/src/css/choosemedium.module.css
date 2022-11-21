@@ -1,0 +1,25 @@
+.content {
+  padding: 10px;
+}
+.platform {
+  display: flex;
+  justify-content: space-between;
+}
+
+.platform:nth-child(2) {
+  margin-top: 10px;
+}
+.btnGrp {
+  display: flex;
+  margin-top: 10px;
+  gap: 5px;
+}
+.btnGrp button {
+  width: 50%;
+  background-color: var(--primary-btn);
+  padding: 7px 14px;
+  border-radius: 5px;
+}
+.btnGrp button:nth-child(1) {
+   background-color: rgba(51, 51, 51, 0.582);
+}

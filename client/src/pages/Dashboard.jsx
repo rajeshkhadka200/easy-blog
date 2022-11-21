@@ -2,23 +2,18 @@ import React from "react";
 import Sidebar from "../components/Sidebar";
 import style from "../css/dashboard.module.css";
 import Table from "../components/Table";
+import DashBoardHeader from "../components/DashBoardHeader";
 
 const Dashboard = () => {
   return (
     <>
       <div className="sidebar_con">
         <Sidebar />
-        <div className={style.dash_left_side_content}>
-          <div className={style.header}>
-            <h3>Your Blogpost </h3>
-            <div className={style.search}>
-              <input type="text" placeholder="search blog title" />
-              <button>search</button>
-            </div>
-          </div>
-          <div className={style.after_border}></div>
+        <div className={style.dash_right_side_content}>
+          <DashBoardHeader title="Your Blogpost" />
+
           {/* render the cards */}
-          <div className={style.dash_card_con}>
+          <div className={style.dash_table_con}>
             <Table />
           </div>
         </div>

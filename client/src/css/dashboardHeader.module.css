@@ -1,0 +1,31 @@
+.header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  /* padding-bottom: 300px; */
+  min-height: 55px;
+  align-items: center;
+}
+.after_border {
+  height: 2px;
+  width: 100%;
+  background-color: var(--border);
+  margin-top: 10px;
+}
+
+.header input {
+  background-color: var(--sec-bg);
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  color: #fff;
+  padding: 8px 10px;
+  width: 265px;
+}
+
+.header .search button {
+  background-color: var(--primary-btn);
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  height: 100%;
+  padding: 8px 10px;
+}

@@ -5,7 +5,10 @@ import { AiOutlineDelete } from "react-icons/ai";
 import style from "../css/markdown.module.css";
 import Editor from "../components/Editor";
 
+import PopupContainer from "../components/PopupContainer";
+
 const Markdown = () => {
+  const [showPopup, setShowPopup] = useState(true);
   const [cover, setCover] = useState({
     url: "",
     img: "",
@@ -29,6 +32,7 @@ const Markdown = () => {
   };
   return (
     <>
+      {showPopup && <PopupContainer heading={"Where to publish Article ?"} />}
       <div className={style.markdownCon}>
         {cover.url ? <img src={cover.url} alt="image" /> : ""}
         <div className={style.header}>
