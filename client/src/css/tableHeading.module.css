@@ -8,6 +8,7 @@
   height: 40px;
   overflow: hidden;
   border-radius: 5px;
+  /* font-size: 14px; */
 }
 .header div {
   background-color: var(--sec-bg);

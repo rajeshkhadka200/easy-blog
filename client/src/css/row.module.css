@@ -12,6 +12,7 @@
   align-content: center;
   padding: 20px 0;
   border-bottom: 1px solid var(--border);
+  /* font-size: 14px; */
 }
 .row:nth-child(1) {
   margin-top: 10px;
@@ -51,4 +52,8 @@
 .hashnode {
   fill: #3466f6;
   font-size: 28px;
+}
+
+.action * {
+  color: rgb(153, 153, 153);
 }

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import popupCon from "../css/popupcontainer.module.css";
 import ChooseMedium from "../components/Choosemedium";
 import { IoMdClose } from "react-icons/io";
-import { ContexStore } from "../context/Context";
+import { ContexStore } from "../libs/Context";
 import GenerateBlogInfo from "./GenerateBlogInfo";
 const PopupContainer = ({ heading }) => {
   // context provider
@@ -16,7 +16,6 @@ const PopupContainer = ({ heading }) => {
     document.body.style.overflow = "auto";
     setispopUp(!ispopUp);
   };
-  console.log(pathname);
   return (
     <>
       <div className={popupCon.popup_overlay_container}>

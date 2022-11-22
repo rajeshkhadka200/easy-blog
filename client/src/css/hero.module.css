@@ -9,7 +9,7 @@
   width: max(50%, 500px);
 }
 .left h2 {
-  font-size: 50px;
+  font-size: 60px;
 }
 .left p {
   font-size: 18px;
@@ -35,8 +35,8 @@
   overflow: hidden;
 } */
 .right .box {
-  height: 400px;
-  width: 400px;
+  height: 450px;
+  width: 450px;
   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
   background-color: var(--sec-bg);
 }

@@ -11,6 +11,7 @@ const Table = () => {
         {/* single row of table */}
         <Row />
         <Row />
+        <Row />
       </div>
     </>
   );

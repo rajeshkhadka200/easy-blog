@@ -3,7 +3,7 @@ import Sidebar from "../components/Sidebar";
 import style from "../css/dashboard.module.css";
 import Table from "../components/Table";
 import DashBoardHeader from "../components/DashBoardHeader";
-import { ContexStore } from "../context/Context";
+import { ContexStore } from "../libs/Context";
 
 const Dashboard = () => {
   const { modal } = useContext(ContexStore);

@@ -6,7 +6,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { FiLogOut } from "react-icons/fi";
 import { NavLink } from "react-router-dom";
 import style from "../css/sidebar.module.css";
-import { ContexStore } from "../context/Context";
+import { ContexStore } from "../libs/Context";
 import PopupContainer from "../components/PopupContainer";
 const Sidebar = () => {
   // context provider

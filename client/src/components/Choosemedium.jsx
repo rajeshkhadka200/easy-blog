@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { ContexStore } from "../context/Context";
+import { ContexStore } from "../libs/Context";
 import style from "../css/choosemedium.module.css";
 const ChooseMedium = () => {
   //context provider

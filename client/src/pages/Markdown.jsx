@@ -6,7 +6,7 @@ import style from "../css/markdown.module.css";
 import Editor from "../components/Editor";
 
 import PopupContainer from "../components/PopupContainer";
-import { ContexStore } from "../context/Context";
+import { ContexStore } from "../libs/Context";
 
 const Markdown = () => {
   //  context provider
