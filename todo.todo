@@ -1,5 +1,5 @@
 TDODS:
-    Fromtend:
+    Frontend:
         ✔ Navbar @done(22-11-20 19:26)
         ✔ Hero section @done(22-11-20 19:25)
         ✔ Features section @done(22-11-20 19:26)
@@ -7,26 +7,24 @@ TDODS:
         ✔ Dashboard @done(22-11-20 19:26)
         ✔ markdown @done(22-11-20 17:49)
         ✔ modal for generating room id @done(22-11-21 14:19)
-        ☐ active link
+        ✔ active link @done(22-11-24 00:27)
         ☐ realtime blogging experience 
-        ☐ community blog
-        ☐ profile
-        ☐ collect api keys
+        ✔ community blog @done(22-11-23 23:46)
+        ✔ profile @done(22-11-23 23:46)
+        ✔ collect api keys @done(22-11-23 23:46)
         ☐ starter modal
+        ☐ video section
 
     Bug Fix on:
-    ✔ markdown pupup @done(22-11-21 14:19)
-    ✔ sidebar @done(22-11-21 14:19)
-    ✔ Dashboard delete icons @done(22-11-22 22:31)
+        ✔ markdown pupup @done(22-11-21 14:19)
+        ✔ sidebar @done(22-11-21 14:19)
+        ✔ Dashboard delete and edit icons @done(22-11-22 22:31)
+
+    Add on:
+        ✔ copy right in dashboard @done(22-11-24 00:13)
 
 
 
 
-    - img
-    - name
-    - no of blogs
-    - email
-    - hash link
-    - dev link
-    - edit keys api
+    
 

@@ -3,7 +3,6 @@ import { BiHomeAlt } from "react-icons/bi";
 import { MdOutlineExplore } from "react-icons/md";
 import { AiOutlineUser } from "react-icons/ai";
 import { AiOutlinePlus } from "react-icons/ai";
-import { FiLogOut } from "react-icons/fi";
 import { NavLink } from "react-router-dom";
 import style from "../css/sidebar.module.css";
 import { ContexStore } from "../libs/Context";
@@ -23,20 +22,36 @@ const Sidebar = () => {
   };
 
   // sidebar links
+  let icon = ["app", "all-blogs", "profile"];
   const links = [
     {
       name: "Home",
-      icon: <BiHomeAlt fontSize={18} />,
+      icon: (
+        <BiHomeAlt
+          className={pathname === icon[0] && "active_icon"}
+          fontSize={18}
+        />
+      ),
       path: "/app",
     },
     {
       name: "Explore",
-      icon: <MdOutlineExplore fontSize={20} />,
+      icon: (
+        <MdOutlineExplore
+          className={pathname === icon[1] && "active_icon"}
+          fontSize={20}
+        />
+      ),
       path: "/all-blogs",
     },
     {
       name: "Profile",
-      icon: <AiOutlineUser size={20} />,
+      icon: (
+        <AiOutlineUser
+          className={pathname === icon[2] && "active_icon"}
+          size={20}
+        />
+      ),
       path: "/profile",
     },
   ];
@@ -56,16 +71,10 @@ const Sidebar = () => {
           })}
         </div>
         <div className={style.last_btn}>
-          <button
-            onClick={openModal}
-            // to={"/markdown"}
-            className={style.button}
-          >
+          <button onClick={openModal} className={style.button}>
             <AiOutlinePlus size={20} /> Create Blog
           </button>
-          {/* <button>
-            <FiLogOut /> Log out 
-          </button> */}
+          {/* <span>© 2022 easyblog</span> */}
         </div>
       </div>
     </>

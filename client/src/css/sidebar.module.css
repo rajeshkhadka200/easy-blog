@@ -35,7 +35,11 @@
 }
 
 .last_btn {
-  padding: 0 10px;
+  padding: 10px 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-direction: column;
 }
 
 .last_btn .button {
@@ -48,9 +52,9 @@
   align-items: center;
   gap: 3px;
   font-weight: 500;
-  margin-bottom: 25px;
+  margin-bottom: 5px;
 }
-
-.active {
-  color: red;
+.last_btn span {
+  text-align: center;
+  font-size: 12px;
 }
