@@ -15,7 +15,7 @@
   font-size: 18px;
   padding: 10px 0;
 }
-.left span{
+.left span {
   color: var(--primary-btn);
   font-weight: 600;
 }
@@ -39,10 +39,31 @@
   width: 450px;
   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
   background-color: var(--sec-bg);
+  animation: box_anim 1s alternate-reverse infinite;
+}
+/* animation for box */
+@keyframes box_anim {
+  0% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .right img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  animation: img_anim 1s alternate-reverse infinite;
+}
+
+/* animation for box */
+@keyframes img_anim {
+  0% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }

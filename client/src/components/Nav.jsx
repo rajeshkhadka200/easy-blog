@@ -6,7 +6,7 @@ import styles from "../css/nav.module.css";
 import { FaDribbble } from "react-icons/fa";
 import { useState } from "react";
 const Nav = () => {
-  const [isLogin, setisLogin] = useState(true);
+  const [isLogin, setisLogin] = useState(false);
   return (
     <>
       <nav>

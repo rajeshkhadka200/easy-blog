@@ -1,7 +1,7 @@
 import React from "react";
 import style from "../css/profileheader.module.css";
 import { FiLogOut } from "react-icons/fi";
-import { AiTwotoneEdit } from "react-icons/ai";
+import { AiOutlineSetting } from "react-icons/ai";
 const ProfileHeader = () => {
   return (
     <>
@@ -25,7 +25,7 @@ const ProfileHeader = () => {
           </div>
           <div className={style.right_details}>
             <button>
-              <AiTwotoneEdit size={18} />
+              <AiOutlineSetting size={18} />
               Edit Credientials
             </button>
             <button>

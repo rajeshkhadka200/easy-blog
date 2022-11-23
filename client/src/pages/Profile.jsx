@@ -9,7 +9,7 @@ const Profile = () => {
     <div className="sidebar_con">
       <Sidebar />
       <div className={similarStyle.dash_right_side_content}>
-        <DashBoardHeader title="Your Profile" />
+        <DashBoardHeader title="Rajesh Khadka" />
         <ProfileHeader />
       </div>
     </div>
