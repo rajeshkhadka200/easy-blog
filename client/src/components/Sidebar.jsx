@@ -1,12 +1,17 @@
 import React, { useContext } from "react";
+
+// icons
 import { BiHomeAlt } from "react-icons/bi";
 import { MdOutlineExplore } from "react-icons/md";
 import { AiOutlineUser } from "react-icons/ai";
 import { AiOutlinePlus } from "react-icons/ai";
+
+//imports
 import { NavLink } from "react-router-dom";
 import style from "../css/sidebar.module.css";
 import { ContexStore } from "../libs/Context";
 import PopupContainer from "../components/PopupContainer";
+
 const Sidebar = () => {
   // context provider
   const { modal } = useContext(ContexStore);
@@ -22,7 +27,7 @@ const Sidebar = () => {
   };
 
   // sidebar links
-  let icon = ["app", "all-blogs", "profile"];
+  let icon = ["app", "all-blogs", "profile", "apikey"];
   const links = [
     {
       name: "Home",
@@ -53,6 +58,16 @@ const Sidebar = () => {
         />
       ),
       path: "/profile",
+    },
+    {
+      name: "API key",
+      icon: (
+        <AiOutlinePlus
+          className={pathname === icon[3] && "active_icon"}
+          size={18}
+        />
+      ),
+      path: "/apikey",
     },
   ];
   return (

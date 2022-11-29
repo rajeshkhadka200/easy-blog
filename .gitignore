@@ -5,7 +5,7 @@
 client/yarn.lock
 
 # server
-/server/.env.local
+/server/.env
 /server/node_modules
 /server/package-lock.json
 /server/yarn.lock

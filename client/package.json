@@ -10,9 +10,13 @@
   },
   "dependencies": {
     "@uiw/react-md-editor": "^3.19.7",
+    "axios": "^1.2.0",
     "file-loader": "^6.2.0",
+    "gapi-script": "^1.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-github-login": "^1.0.3",
+    "react-google-login": "^5.2.2",
     "react-icons": "^4.6.0",
     "react-router-dom": "6.3.0",
     "socket.io-client": "4.5.1"

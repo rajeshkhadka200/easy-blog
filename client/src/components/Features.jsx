@@ -29,7 +29,7 @@ const Features = () => {
           {data.map((data, i) => {
             const { icon, title, text } = data;
             return (
-              <div className={style.card}>
+              <div key={i} className={style.card}>
                 <div className={style.icon}>{icon}</div>
                 <h3>{title}</h3>
                 <p>{text}</p>

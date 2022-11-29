@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Sidebar from "../components/Sidebar";
 import style from "../css/dashboard.module.css";
 import Table from "../components/Table";
@@ -6,7 +6,14 @@ import DashBoardHeader from "../components/DashBoardHeader";
 import { ContexStore } from "../libs/Context";
 
 const Dashboard = () => {
-  const { modal } = useContext(ContexStore);
+  const { modal, userData } = useContext(ContexStore);
+  const [user, setuser] = userData;
+
+  useEffect(() => {
+    if (user.length === 0) {
+    }
+  }, []);
+
   return (
     <>
       <div className="sidebar_con">

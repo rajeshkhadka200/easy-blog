@@ -1,18 +1,40 @@
+import axios from "../libs/axios.js";
 import React from "react";
 import style from "../css/hero.module.css";
 import PopupContainer from "./PopupContainer";
 const Hero = () => {
+  const logout = async () => {
+    let refreshToken = localStorage.getItem("refreshToken");
+    console.log(refreshToken);
+    try {
+      const res = await axios.delete(
+        "user/logout",
+        { refreshToken : refreshToken },
+        {
+          headers: {
+            "content-type": "application/json",
+          },
+        }
+      );
+      localStorage.clear();
+      console.log(res.data.msg);
+      window.location.href = "/";
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <div className={style.hero}>
         <div className={style.left}>
-          <h2>Write once, share to many  </h2>
+          <h2>Write once, share to many </h2>
           <p>
             Introducung <span>Easy blog</span>, a platform from where you can
-            easily post your blogpost to diffrent platforms (dev, hashnode) at once.
+            easily post your blogpost to diffrent platforms (dev, hashnode) at
+            once.
           </p>
           <div className={style.btn}>
-            <button>Get started</button>
+            <button onClick={logout}>Get started</button>
             {/* <button>View on github</button> */}
           </div>
         </div>

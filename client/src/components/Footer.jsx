@@ -16,7 +16,11 @@ const Footer = () => {
         <p>Made with ❤️ by Rajesh Khadka </p>
         <div className={style.social}>
           {icon.map((icon, i) => {
-            return <div className={style.icon}>{icon}</div>;
+            return (
+              <div key={i} className={style.icon}>
+                {icon}
+              </div>
+            );
           })}
         </div>
       </div>

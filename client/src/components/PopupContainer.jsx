@@ -33,7 +33,7 @@ const PopupContainer = ({ heading }) => {
     }
     return false;
   };
-  let isPage = checkPages();
+  const isPage = checkPages();
   return (
     <>
       <div className={popupCon.popup_overlay_container}>

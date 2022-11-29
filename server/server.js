@@ -1,36 +1,24 @@
+import {} from "dotenv/config";
 import express from "express";
 const app = express();
 import cors from "cors";
-const port = 8000;
-import http from "http";
-import { Server } from "socket.io";
-import { join } from "./services/socket.service.js";
-const server = http.createServer(app);
-const io = new Server(server);
+import { connectDB } from "./db/connection.js";
+
+// imports routes
+import userRoutes from "./routes/user.route.js";
+import tokenRoutes from "./routes/token.route.js";
 
 // middleware
 app.use(cors());
 app.use(express.json());
 
-// connected users in LocalMemory
-const usersinSocket = {};
-const getAllClients = (room_id) => {
-  return Array.from(io.sockets.adapter.rooms.get(room_id) || []).map(
-    (socketId) => {
-      return {
-        socketId,
-        username: usersinSocket[socketId],
-      };
-    }
-  );
-};
+// conect to db
+connectDB();
 
-// triger when the client gets connected to server
-io.on("connection", (socket) => {
-  console.log("a user connected");
-  // join(socket, getAllClients, usersinSocket, io);
-});
-
+// setup routes
+app.use("/api/user", userRoutes); // this is the route for the user routes
+app.use("/api/token", tokenRoutes);
+const port = 8000;
 app.listen(port, () => {
   console.log(`running on port ${port}`);
 });

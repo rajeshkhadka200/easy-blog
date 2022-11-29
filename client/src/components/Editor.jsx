@@ -6,29 +6,29 @@ const Editor = () => {
   const [value, setValue] = useState();
 
   // initialize the ref for socket
-  const socketRef = useRef(null);
-  useEffect(() => {
-    async function init() {
-      socketRef.current = await initSocketClient();
+  // const socketRef = useRef(null);
+  // useEffect(() => {
+  //   async function init() {
+  //     socketRef.current = await initSocketClient();
 
-      // error handalling
-      socketRef.current.on("connect_error", (err) => {
-        handleError(err);
-      });
-      socketRef.current.on("connect_failed", (err) => {
-        handleError(err);
-      });
+  //     // error handalling
+  //     socketRef.current.on("connect_error", (err) => {
+  //       handleError(err);
+  //     });
+  //     socketRef.current.on("connect_failed", (err) => {
+  //       handleError(err);
+  //     });
 
-      const handleError = (err) => {
-        // alert("failed to connect");
-        console.log(err);
-        // toast.error("Failed to connect, Please try again ");
-      };
-      // sockets functions
-      join(socketRef, "shakjhsakjshkja", "rajesh khadka");
-    }
-    init();
-  }, []);
+  //     const handleError = (err) => {
+  //       // alert("failed to connect");
+  //       console.log(err);
+  //       // toast.error("Failed to connect, Please try again ");
+  //     };
+  //     // sockets functions
+  //     join(socketRef, "shakjhsakjshkja", "rajesh khadka");
+  //   }
+  //   init();
+  // }, []);
 
   return (
     <>

@@ -7,7 +7,7 @@ import PopupContainer from "../components/PopupContainer";
 const Home = () => {
   return (
     <>
-      {/* <PopupContainer heading={"Thanks Mongo Db and Dev"} /> */}
+      
       <Hero />
       <Features />
       <Footer />
