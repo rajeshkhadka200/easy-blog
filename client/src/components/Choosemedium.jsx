@@ -1,10 +1,13 @@
 import React, { useState, useContext } from "react";
 import { ContexStore } from "../libs/Context";
 import style from "../css/choosemedium.module.css";
+import axios from "../libs/axios";
 const ChooseMedium = () => {
   //context provider
-  const { modal } = useContext(ContexStore);
+  const { modal, content, userData } = useContext(ContexStore);
   const [ispopUp, setispopUp] = modal;
+  const [blog, setisBlog] = content;
+  const [user] = userData;
 
   // state for platform selection
   const [platform, setplatform] = useState({
@@ -18,6 +21,14 @@ const ChooseMedium = () => {
       ...platform,
       [e.target.name]: !platform[e.target.name],
     });
+    // setIs blog to post to selected platform only
+    setisBlog({
+      ...blog,
+      post_to: {
+        ...blog.post_to,
+        [e.target.name]: !blog.post_to[e.target.name],
+      },
+    });
   };
 
   // handle the popup
@@ -25,6 +36,41 @@ const ChooseMedium = () => {
     setispopUp(!ispopUp);
     document.body.style.overflow = "auto";
   };
+
+  const postBlog = async () => {
+    // all the validations
+    if (blog.title === "") {
+      alert("Please enter a title");
+      return;
+    }
+    // check if the user has not selected any platform
+    if (!blog.post_to.hashnode && !blog.post_to.dev) {
+      alert("Please select a platform");
+      return;
+    }
+
+    // check if markdown is empty
+    if (blog.markdown === "") {
+      alert("Please enter some content");
+      return;
+    }
+
+    // proceed for posting
+    try {
+      const res = await axios.post("/blog/post", {
+        blog,
+        user_id: user._id,
+      });
+      if (res) {
+        alert("Blog posted successfully");
+        setispopUp(false);
+        document.body.style.overflow = "auto";
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <div className={style.content}>
@@ -55,7 +101,7 @@ const ChooseMedium = () => {
 
         <div className={style.btnGrp}>
           <button onClick={close}>Cancel</button>
-          <button>Post</button>
+          <button onClick={postBlog}>Post</button>
         </div>
       </div>
     </>

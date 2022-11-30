@@ -1,42 +1,32 @@
-import React, { useState, useRef, useEffect } from "react";
-import MDEditor from "@uiw/react-md-editor";
-import style from "../css/editor.module.css";
-import { initSocketClient } from "../libs/socket.connection";
+import React, { useState, useRef, useEffect, useContext } from "react";
+import onlyEditor from "../css/editor.module.css";
+import { ContexStore } from "../libs/Context";
+
+// for markdown
+// import MarkdownIt from "markdown-it";
+import MdEditor from "react-markdown-editor-lite";
+import "react-markdown-editor-lite/lib/index.css";
+import ReactMarkdown from "react-markdown";
+
 const Editor = () => {
-  const [value, setValue] = useState();
+  //context provider
+  const { content } = useContext(ContexStore);
+  const [blog, setisBlog] = content;
 
-  // initialize the ref for socket
-  // const socketRef = useRef(null);
-  // useEffect(() => {
-  //   async function init() {
-  //     socketRef.current = await initSocketClient();
-
-  //     // error handalling
-  //     socketRef.current.on("connect_error", (err) => {
-  //       handleError(err);
-  //     });
-  //     socketRef.current.on("connect_failed", (err) => {
-  //       handleError(err);
-  //     });
-
-  //     const handleError = (err) => {
-  //       // alert("failed to connect");
-  //       console.log(err);
-  //       // toast.error("Failed to connect, Please try again ");
-  //     };
-  //     // sockets functions
-  //     join(socketRef, "shakjhsakjshkja", "rajesh khadka");
-  //   }
-  //   init();
-  // }, []);
-
+  function handleEditorChange({ html, text }) {
+    //set blog content
+    setisBlog({
+      ...blog,
+      ["markdown"]: text,
+    });
+  }
   return (
     <>
-      <MDEditor
-        height={380}
-        className={style.editor}
-        value={value}
-        onChange={setValue}
+      <MdEditor
+        name="markdown"
+        style={{ height: "385px" }}
+        renderHTML={(text) => <ReactMarkdown>{text}</ReactMarkdown>}
+        onChange={handleEditorChange}
       />
     </>
   );

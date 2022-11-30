@@ -10,12 +10,6 @@ const AccountInfo = () => {
   const { userData } = useContext(ContexStore);
   const [user, setuser] = userData;
 
-  useEffect(() => {
-    if (user.length === 0) {
-      return navigate("/");
-    }
-  }, []);
-
   const [keys, setKeys] = useState({
     dev_apikey: "152",
     hashnode_publicationId: "12252",

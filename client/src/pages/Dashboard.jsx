@@ -1,16 +1,16 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import Sidebar from "../components/Sidebar";
 import style from "../css/dashboard.module.css";
 import Table from "../components/Table";
 import DashBoardHeader from "../components/DashBoardHeader";
-import { ContexStore } from "../libs/Context";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
-  const { modal, userData } = useContext(ContexStore);
-  const [user, setuser] = userData;
-
+  const navigate = useNavigate();
+  let id = localStorage.getItem("accessToken");
   useEffect(() => {
-    if (user.length === 0) {
+    if (!id) {
+      navigate("/");
     }
   }, []);
 

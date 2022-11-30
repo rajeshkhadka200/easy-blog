@@ -4,15 +4,17 @@ import { BiImageAdd } from "react-icons/bi";
 import { AiOutlineDelete } from "react-icons/ai";
 import style from "../css/markdown.module.css";
 import Editor from "../components/Editor";
+import MDEditor from "@uiw/react-md-editor";
 
 import PopupContainer from "../components/PopupContainer";
 import { ContexStore } from "../libs/Context";
 
 const Markdown = () => {
   //  context provider
-  const { modal } = useContext(ContexStore);
+  const { modal, content } = useContext(ContexStore);
   const [ispopUp, setispopUp] = modal;
-
+  const [blog, setisBlog] = content;
+  console.log(blog);
   // handle for popup
   const open = () => {
     document.body.style.overflow = "hidden";
@@ -46,6 +48,14 @@ const Markdown = () => {
       img: "",
     });
   };
+
+  const handleBlog = (e) => {
+    setisBlog({
+      ...blog,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
     <>
       {ispopUp && <PopupContainer heading={"Publish this article on ?"} />}
@@ -79,9 +89,10 @@ const Markdown = () => {
           <textarea
             placeholder="Article title ..."
             id="text"
-            name="text"
+            name="title"
             rows="2"
             cols="50"
+            onChange={handleBlog}
           ></textarea>
         </div>
         {/* actual markdown */}

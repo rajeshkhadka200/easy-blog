@@ -16,10 +16,11 @@ import { ContexStore } from "../libs/Context.jsx";
 const Nav = () => {
   const { userData } = useContext(ContexStore);
   const [user, setUser] = userData;
+  const { image, name } = user;
 
+  let toks = localStorage.getItem("accessToken");
   // use navigate
-  const navigate = useNavigate();
-  let token = localStorage.getItem("accessToken");
+
   useEffect(() => {
     function start() {
       gapi.client.init({
@@ -51,7 +52,7 @@ const Nav = () => {
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
       alert(res.data.message);
-      window.location.href = "/app";
+      window.location.href = "/";
     } catch (error) {
       console.log(error);
     }
@@ -74,8 +75,8 @@ const Nav = () => {
           </Link>
         </div>
         <div className={styles.links}>
-          {user.name ? (
-            <img src={user?.image} alt="user-not-found" />
+          {toks ? (
+            <img src={image} alt="" />
           ) : (
             <div onClick={signIn} className={styles.login}>
               <AiFillGithub size={30} />

@@ -73,3 +73,33 @@ input {
   gap: 30px;
   padding-top: 80px;
 }
+
+/* markdown style */
+.rc-md-editor .editor-container .sec-md .input,
+.rc-md-editor .editor-container .sec-html .html-wrap,
+.rc-md-editor .rc-md-navigation {
+  background-color: #0d1117 !important;
+  color: #fff;
+}
+
+.rc-md-editor .editor-container > .section {
+  border-right: 1px solid #30363d;
+}
+.rc-md-editor .rc-md-navigation {
+  border-bottom: 1px solid #30363d;
+}
+
+.rc-md-editor {
+  border: 1px solid var(--border) !important;
+}
+.drop-wrap {
+  background-color: var(--sec-bg) !important;
+  border-color: var(--border) !important;
+  border-style: solid !important;
+  border-width: 1px !important;
+}
+
+.custom-html-style code,
+.custom-html-style pre {
+  background-color: none repeat scroll 0 0 rgba(102, 128, 153, 0.05);
+}

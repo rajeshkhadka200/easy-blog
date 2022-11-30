@@ -3,10 +3,31 @@ import style from "../css/profileheader.module.css";
 import { FiLogOut } from "react-icons/fi";
 import { AiOutlineSetting } from "react-icons/ai";
 import { ContexStore } from "../libs/Context";
+import axios from "../libs/axios.js";
 const ProfileHeader = () => {
   const { userData } = useContext(ContexStore);
   const [user] = userData;
-
+  
+  const logout = async () => {
+    let refreshToken = localStorage.getItem("refreshToken");
+    console.log(refreshToken);
+    try {
+      const res = await axios.delete(
+        "user/logout",
+        { refreshToken: refreshToken },
+        {
+          headers: {
+            "content-type": "application/json",
+          },
+        }
+      );
+      localStorage.clear();
+      console.log(res.data.msg);
+      window.location.href = "/";
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <div className={style.container}>
@@ -29,7 +50,7 @@ const ProfileHeader = () => {
               <AiOutlineSetting size={18} />
               Edit Credientials
             </button>
-            <button>
+            <button onClick={logout}>
               <FiLogOut size={18} />
               Logout
             </button>

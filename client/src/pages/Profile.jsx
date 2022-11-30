@@ -9,8 +9,9 @@ const Profile = () => {
   const { userData } = useContext(ContexStore);
   const [user, setuser] = userData;
   const navigate = useNavigate();
+  let id = localStorage.getItem("accessToken");
   useEffect(() => {
-    if (user.length === 0) {
+    if (!id) {
       navigate("/");
     }
   }, []);

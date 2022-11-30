@@ -3,26 +3,6 @@ import React from "react";
 import style from "../css/hero.module.css";
 import PopupContainer from "./PopupContainer";
 const Hero = () => {
-  const logout = async () => {
-    let refreshToken = localStorage.getItem("refreshToken");
-    console.log(refreshToken);
-    try {
-      const res = await axios.delete(
-        "user/logout",
-        { refreshToken : refreshToken },
-        {
-          headers: {
-            "content-type": "application/json",
-          },
-        }
-      );
-      localStorage.clear();
-      console.log(res.data.msg);
-      window.location.href = "/";
-    } catch (error) {
-      console.log(error);
-    }
-  };
   return (
     <>
       <div className={style.hero}>
@@ -34,7 +14,7 @@ const Hero = () => {
             once.
           </p>
           <div className={style.btn}>
-            <button onClick={logout}>Get started</button>
+            <button>Get started</button>
             {/* <button>View on github</button> */}
           </div>
         </div>

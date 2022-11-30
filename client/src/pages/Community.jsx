@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Sidebar from "../components/Sidebar";
 import DashBoardHeader from "../components/DashBoardHeader";
 import similarStyle from "../css/dashboard.module.css";
 import Card from "../components/Card";
+import { useNavigate } from "react-router-dom";
+import { ContexStore } from "../libs/Context";
 const Community = () => {
+  const navigate = useNavigate();
+  let id = localStorage.getItem("accessToken");
+  useEffect(() => {
+    if (!id) {
+      return navigate("/");
+    }
+  }, []);
+
   return (
     <div className="sidebar_con">
       <Sidebar />
@@ -14,7 +24,6 @@ const Community = () => {
           <Card />
           <Card />
           <Card />
-
         </div>
       </div>
     </div>

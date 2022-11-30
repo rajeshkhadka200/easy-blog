@@ -5,6 +5,7 @@ const Context = (props) => {
   const accessToken = localStorage.getItem("accessToken");
   const [ispopUp, setispopUp] = useState(false);
   const [user, setUser] = useState([]);
+
   const refreshToken = localStorage.getItem("refreshToken");
   const getAccessToken = async () => {
     try {
@@ -21,6 +22,7 @@ const Context = (props) => {
       console.log(error);
     }
   };
+
   const fetchUser = async () => {
     try {
       const res = await axios.get("/user/getuser", {
@@ -28,8 +30,7 @@ const Context = (props) => {
           "x-access-token": `${accessToken}`,
         },
       });
-      console.log(res);
-      setUser(res.data.user);
+      setUser(res.data);
     } catch (error) {
       if (error.response && error.response.status === 401) {
         const accessTok = await getAccessToken();
@@ -38,7 +39,8 @@ const Context = (props) => {
             "x-access-token": accessTok,
           },
         });
-        setUser([res.data.user]);
+
+        setUser(res.data);
       }
     }
   };
@@ -48,12 +50,24 @@ const Context = (props) => {
     }
   }, []);
 
+  const [blog, setisBlog] = useState({
+    title: "",
+    markdown: "",
+    cover: "",
+    post_to: {
+      hashnode: false,
+      dev: true,
+    },
+    published_on: "",
+  });
+
   return (
     <>
       <ContexStore.Provider
         value={{
           modal: [ispopUp, setispopUp],
           userData: [user, setUser],
+          content: [blog, setisBlog], // blog content
         }}
       >
         {props.children}
