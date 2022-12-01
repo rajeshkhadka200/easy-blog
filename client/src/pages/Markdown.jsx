@@ -14,7 +14,7 @@ const Markdown = () => {
   const { modal, content } = useContext(ContexStore);
   const [ispopUp, setispopUp] = modal;
   const [blog, setisBlog] = content;
-  console.log(blog);
+  // console.log(blog);
   // handle for popup
   const open = () => {
     document.body.style.overflow = "hidden";

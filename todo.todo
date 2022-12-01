@@ -24,7 +24,20 @@ TDODS:
         ✔ copy right in dashboard @done(22-11-24 00:13)
 
 
+ workflow for posting the blog
+ 1. all validation : {
+    must enter the api keys
+    all feild are req
+}
+2. {
+    send data to controller
+    post to community : {
+        retrive the api keys from the community
+        retrive the id from community
+        send the post with id in db
+    }
 
+}
 
     
 

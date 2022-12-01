@@ -3,14 +3,13 @@ import Sidebar from "../components/Sidebar";
 import style from "../css/dashboard.module.css";
 import Table from "../components/Table";
 import DashBoardHeader from "../components/DashBoardHeader";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 const Dashboard = () => {
-  const navigate = useNavigate();
   let id = localStorage.getItem("accessToken");
   useEffect(() => {
     if (!id) {
-      navigate("/");
+      return <Navigate to="/" replace />;
     }
   }, []);
 

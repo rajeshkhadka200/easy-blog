@@ -55,8 +55,8 @@ const Context = (props) => {
     markdown: "",
     cover: "",
     post_to: {
-      hashnode: false,
-      dev: true,
+      hashnode: true,
+      dev: false,
     },
     published_on: "",
   });

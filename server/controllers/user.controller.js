@@ -70,9 +70,7 @@ export const getUser = async (req, res) => {
         message: "User not found",
       });
     }
-    res.status(200).json({
-      user,
-    });
+    res.status(200).send(user);
   } catch (error) {
     res.status(500).json({ message: "Something went wrong" });
   }

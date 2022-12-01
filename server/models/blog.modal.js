@@ -5,13 +5,11 @@ import mongoose from "mongoose";
 const blogSchema = new mongoose.Schema({
   title: { type: String, required: true },
   markdown: { type: String, required: true },
-  cover: { type: String, required: true },
-  original_links: {
-    dev: { type: String, required: true },
-  },
+  cover: { type: String, default: "" },
+  original_link: { type: String, default: "" },
   remote_id: {
-    dev: { type: String, required: true },
-    hashnode: { type: String, required: true },
+    dev: { type: String, required: true, default: "" },
+    hashnode: { type: String, required: true, default: "" },
   },
   published_on: { type: String, required: true },
 });
