@@ -21,6 +21,7 @@ export const postBlog = async (req, res) => {
     },
     published_on: moment().format("ll"),
   };
+
   if (post_to.dev) {
     const Devurl = "https://dev.to/api/articles";
     if (!user) {
@@ -64,13 +65,48 @@ export const postBlog = async (req, res) => {
   // post to hashnode
   if (post_to.hashnode) {
     const hashnodeUrl = "https://api.hashnode.com";
-    let hashnode_authorization = "5131be37-f7e2-4634-9b29-e9660b76bc3a";
+    let auth = "5131be37-f7e2-4634-9b29-e9660b76bc3a";
     let hashnode_publicationId = "637f63cd0d2fc8df7adde9d2";
     try {
-      console.log(resfromHashnode);
-      const hashnodeBlogid = resfromHashnode.data.data.createPost.post._id;
-      console.log(hashnodeBlogid);
-      // blogOndb.remote_id.hashnode = hashnodeBlogid;
+      // post to hashnode with new syntax with response
+
+      const options = {
+        method: "POST",
+        url: hashnodeUrl + "/",
+        headers: {
+          "Content-Type": "application/json",
+          "authorization": auth,
+        },
+        data: {
+          query: `mutation {
+            createPublicationStory(
+              input: {
+                title: "This article is published via, hashnode api-02"
+                subtitle : "🔥"
+                slug : "via-api",
+                contentMarkdown: "This article is published via, hashnode api"
+                tags: []
+                coverImageURL: "https://images.unsplash.com/photo-1632882765546-1ee75f53becb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80"
+              }
+              publicationId: "637f63cd0d2fc8df7adde9d2"
+            ) {
+              _id
+              title
+              post {
+                _id
+              }
+            }
+          }`,
+        },
+      };
+
+      // make a axios request to hashnode
+      const resfromHashnode = await axios(options);
+      const { data } = resfromHashnode.data;
+      const { createPublicationStory } = data;
+      console.log(createPublicationStory);
+      const { _id, slug } = createPublicationStory;
+      blogOndb.remote_id.hashnode = _id;
     } catch (error) {
       console.log(error);
       res.status(400).json({
@@ -79,4 +115,6 @@ export const postBlog = async (req, res) => {
       return;
     }
   }
+
+  // save on db
 };

@@ -3,16 +3,16 @@ import Sidebar from "../components/Sidebar";
 import DashBoardHeader from "../components/DashBoardHeader";
 import similarStyle from "../css/dashboard.module.css";
 import Card from "../components/Card";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { ContexStore } from "../libs/Context";
 const Community = () => {
   const navigate = useNavigate();
   let id = localStorage.getItem("accessToken");
-  useEffect(() => {
-    if (!id) {
-      return navigate("/");
-    }
-  }, []);
+  // useEffect(() => {
+  if (!id) {
+    return <Navigate to="/" replace />;
+  }
+  // }, []);
 
   return (
     <div className="sidebar_con">
