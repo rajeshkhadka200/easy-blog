@@ -7,11 +7,11 @@ import { Navigate } from "react-router-dom";
 
 const Dashboard = () => {
   let id = localStorage.getItem("accessToken");
-  useEffect(() => {
-    if (!id) {
-      return <Navigate to="/" replace />;
-    }
-  }, []);
+  // useEffect(() => {
+  if (!id) {
+    return <Navigate to="/" replace />;
+  }
+  // }, []);
 
   return (
     <>
