@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "../libs/axios.js";
 
@@ -52,7 +52,7 @@ const Nav = () => {
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
       alert(res.data.message);
-      window.location.href = "/";
+      window.location.href = "/app";
     } catch (error) {
       console.log(error);
     }
@@ -76,7 +76,9 @@ const Nav = () => {
         </div>
         <div className={styles.links}>
           {toks ? (
-            <img src={image} alt="" />
+            <Link to={"/app"}>
+              <img src={image} alt="" />
+            </Link>
           ) : (
             <div onClick={signIn} className={styles.login}>
               <AiFillGithub size={30} />

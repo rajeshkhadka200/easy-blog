@@ -12,7 +12,6 @@ const Editor = () => {
   //context provider
   const { content } = useContext(ContexStore);
   const [blog, setisBlog] = content;
-
   function handleEditorChange({ html, text }) {
     //set blog content
     setisBlog({

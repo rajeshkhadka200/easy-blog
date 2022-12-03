@@ -3,30 +3,32 @@ import style from "../css/accountinfo.module.css";
 import { useNavigate } from "react-router-dom";
 import axios from "../libs/axios.js";
 import { ContexStore } from "../libs/Context";
+import { toast } from "react-toastify";
 
 const AccountInfo = () => {
+  const [isloading, setisloading] = useState(false);
   // check weather user is login or not
   const navigate = useNavigate();
   const { userData } = useContext(ContexStore);
   const [user, setuser] = userData;
 
   const [keys, setKeys] = useState({
-    dev_apikey: "152",
-    hashnode_publicationId: "12252",
-    hashnode_authorization: "1525",
+    dev_apikey: "yNecF91d29yAA3F8SLKbHeDA",
+    hashnode_publicationId: "637f63cd0d2fc8df7adde9d2",
+    hashnode_authorization: "5131be37-f7e2-4634-9b29-e9660b76bc3a",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setKeys({ ...keys, [name]: value });
-  };
+};
   const handleSubmit = async () => {
+    setisloading(true);
     const id = user?._id;
     try {
       const res = await axios.patch(`/user/addkey/${id}`, { keys });
       if (res.status === 200) {
-        alert(res.data.message);
-        navigate("/app");
+        toast.success("Keys added successfully");
       }
     } catch (error) {
       console.log(error);

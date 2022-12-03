@@ -11,9 +11,13 @@ import Markdown from "./pages/Markdown";
 import Profile from "./pages/Profile";
 import Key from "./pages/Key";
 
+// toast
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
     <>
+      <ToastContainer />
       <Nav />
       <Routes>
         <Route path="/" element={<Home />}></Route>

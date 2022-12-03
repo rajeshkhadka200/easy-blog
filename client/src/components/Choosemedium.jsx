@@ -13,7 +13,7 @@ const ChooseMedium = () => {
 
   // state for platform selection
   const [platform, setplatform] = useState({
-    hashnode: true,
+    hashnode: false,
     dev: false,
   });
 

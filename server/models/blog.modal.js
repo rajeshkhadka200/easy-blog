@@ -8,12 +8,13 @@ const blogSchema = new mongoose.Schema({
   cover: { type: String, default: "" },
   original_link: { type: String, default: "" },
   remote_id: {
-    dev: { type: String, required: true, default: "" },
-    hashnode: { type: String, required: true, default: "" },
+    dev: { type: String, default: "" },
+    hashnode: { type: String, default: "" },
   },
+  published_by: { type: String, required: true },
   published_on: { type: String, required: true },
 });
 
 // Creating model for blog
-const blog = mongoose.model("blog", blogSchema);
-export default blog;
+const blogModal = mongoose.model("blog", blogSchema);
+export default blogModal;

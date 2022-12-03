@@ -9,7 +9,9 @@ const Key = () => {
   if (!id) {
     return <Navigate to="/" replace />;
   }
-
+  useEffect(() => {
+    alert("Save as it is if you don't have any api key");
+  }, []);
   return (
     <>
       <PopupContainer heading={"Please Provive your api key"} />
