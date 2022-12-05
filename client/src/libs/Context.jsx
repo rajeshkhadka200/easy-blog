@@ -20,6 +20,11 @@ const Context = (props) => {
       }
     } catch (error) {
       console.log(error);
+      if (error.response && error.response.status === 401) {
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+        window.location.replace("/");
+      }
     }
   };
 
@@ -50,6 +55,19 @@ const Context = (props) => {
     }
   }, []);
 
+  const id = localStorage.getItem("_id");
+  const [myBlog, setMyBlog] = useState([]);
+  useEffect(() => {
+    if (id) {
+      getMyBlog();
+    }
+  }, []);
+
+  const getMyBlog = async () => {
+    const res = await axios.get(`/user/getmyblog/${id}`);
+    setMyBlog(res.data);
+  };
+
   const [blog, setisBlog] = useState({
     title: "",
     markdown: "",
@@ -60,7 +78,6 @@ const Context = (props) => {
     },
     published_on: "",
   });
-
   return (
     <>
       <ContexStore.Provider
@@ -68,6 +85,7 @@ const Context = (props) => {
           modal: [ispopUp, setispopUp],
           userData: [user, setUser],
           content: [blog, setisBlog], // blog content
+          onlymyblog: [myBlog, setMyBlog],
         }}
       >
         {props.children}

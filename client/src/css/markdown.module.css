@@ -26,6 +26,9 @@
 #rm_btn {
   color: #ff0000;
 }
+#addbtn_edit{
+  cursor: not-allowed;
+}
 .header .addBtn:hover {
   background-color: var(--link-hover);
   cursor: pointer;

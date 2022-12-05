@@ -5,9 +5,10 @@ import { AiOutlineSetting } from "react-icons/ai";
 import { ContexStore } from "../libs/Context";
 import axios from "../libs/axios.js";
 const ProfileHeader = () => {
-  const { userData } = useContext(ContexStore);
-  const [user] = userData;
-  
+  const { userData, onlymyblog } = useContext(ContexStore);
+  const [user, setUser] = userData;
+  const [myBlog, setMyBlog] = onlymyblog;
+
   const logout = async () => {
     let refreshToken = localStorage.getItem("refreshToken");
     console.log(refreshToken);
@@ -41,7 +42,7 @@ const ProfileHeader = () => {
             <img src={user?.image} alt={user[0]?.user?.name} />
             <div className={style.info}>
               <h2>{user?.name}</h2>
-              <p>5 blogs published</p>
+              <p>{myBlog?.length} blog published</p>
               {/* <p>rajeshkhadkaofficial45@gmail.com</p> */}
             </div>
           </div>

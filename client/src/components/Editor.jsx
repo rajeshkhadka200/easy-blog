@@ -1,9 +1,7 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
-import onlyEditor from "../css/editor.module.css";
 import { ContexStore } from "../libs/Context";
 
 // for markdown
-// import MarkdownIt from "markdown-it";
 import MdEditor from "react-markdown-editor-lite";
 import "react-markdown-editor-lite/lib/index.css";
 import ReactMarkdown from "react-markdown";

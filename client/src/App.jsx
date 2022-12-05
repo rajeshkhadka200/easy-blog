@@ -14,10 +14,16 @@ import Key from "./pages/Key";
 // toast
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Edit from "./pages/Edit";
 function App() {
   return (
     <>
-      <ToastContainer />
+      <ToastContainer
+        theme="colored"
+        style={{
+          zIndex: 999999,
+        }}
+      />
       <Nav />
       <Routes>
         <Route path="/" element={<Home />}></Route>
@@ -26,6 +32,7 @@ function App() {
         <Route path="/profile" element={<Profile />}></Route>
         <Route path="/all-blogs" element={<Community />}></Route>
         <Route path="/apikey" element={<Key />}></Route>
+        <Route path="/edit/:blogid" element={<Edit />}></Route>
       </Routes>
     </>
   );

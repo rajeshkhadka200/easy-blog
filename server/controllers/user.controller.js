@@ -12,23 +12,27 @@ export const auth = async (req, res) => {
       email,
     });
     if (user) {
+      const { _id } = user;
       //login
       const { accessToken, refreshToken } = await generateToken(user._id);
       return res.status(200).json({
         message: "User logged in successfully",
         accessToken,
         refreshToken,
+        _id,
       });
     }
 
     // register a new user
     let newUser = new User(req.body);
+    const id = newUser._id;
     newUser.save();
     const { accessToken, refreshToken } = await generateToken(newUser._id);
     return res.status(201).json({
       message: "User registered successfully",
       accessToken,
       refreshToken,
+      id,
     });
   } catch (error) {
     console.log(error);
@@ -39,7 +43,6 @@ export const auth = async (req, res) => {
 // getUser
 export const getUser = async (req, res) => {
   const id = req.user._id;
-  console.log(id);
   try {
     const user = await User.findById(id);
     if (!user) {
@@ -82,8 +85,14 @@ export const getMyBlog = async (req, res) => {
   const { userId } = req.params;
   try {
     const myBlog = await Blog.find({
-      _id: userId,
+      published_by: userId,
     });
+    if (!myBlog) {
+      return res.status(404).json({
+        message: "You don't have any blogpost posted from easy blog",
+        action: "display mesg",
+      });
+    }
     return res.status(200).send(myBlog);
   } catch (error) {
     res.status(500).json({ message: "Something went wrong" });

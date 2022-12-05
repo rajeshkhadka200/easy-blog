@@ -4,17 +4,24 @@ import { BiImageAdd } from "react-icons/bi";
 import { AiOutlineDelete } from "react-icons/ai";
 import style from "../css/markdown.module.css";
 import Editor from "../components/Editor";
-import MDEditor from "@uiw/react-md-editor";
 
 import PopupContainer from "../components/PopupContainer";
 import { ContexStore } from "../libs/Context";
+import { Navigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Markdown = () => {
   //  context provider
+  const location = useLocation();
   const { modal, content } = useContext(ContexStore);
   const [ispopUp, setispopUp] = modal;
   const [blog, setisBlog] = content;
-  // console.log(blog);
+
+  let id = localStorage.getItem("accessToken");
+  if (!id) {
+    return <Navigate to="/" replace />;
+  }
+
   // handle for popup
   const open = () => {
     document.body.style.overflow = "hidden";
@@ -24,7 +31,6 @@ const Markdown = () => {
   // state for image cover upload
   const [cover, setCover] = useState({
     url: "",
-    img: "",
   });
 
   // function to handle image cover upload
@@ -36,7 +42,10 @@ const Markdown = () => {
     input.addEventListener("change", (e) => {
       setCover({
         url: URL.createObjectURL(e.target.files[0]),
-        img: e.target.files[0],
+      });
+      setisBlog({
+        ...blog,
+        cover: e.target.files[0],
       });
     });
   };
@@ -79,6 +88,7 @@ const Markdown = () => {
               </div>
             )}
           </div>
+
           <button onClick={open}>
             <CiShare1 fontSize={20} />
             Publish

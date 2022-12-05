@@ -6,21 +6,8 @@ import Row from "./Row";
 import TableHeading from "./TableHeading";
 const Table = () => {
   // context provider
-  const { userData } = useContext(ContexStore);
-  const [user, setuser] = userData;
-  const [myBlog, setMyBlog] = useState([]);
-  useEffect(() => {
-    if (user) {
-      getMyBlog();
-    }
-  }, [user._id]);
-
-  const getMyBlog = async () => {
-    const res = await axios.get(`/user/getmyblog/${user._id}`);
-    setMyBlog(res.data);
-  };
-
- 
+  const { userData,onlymyblog } = useContext(ContexStore);
+  const [myBlog, setMyBlog] = onlymyblog;
 
   return (
     <>

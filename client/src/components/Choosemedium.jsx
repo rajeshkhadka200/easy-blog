@@ -3,6 +3,7 @@ import { ContexStore } from "../libs/Context";
 import style from "../css/choosemedium.module.css";
 import axios from "../libs/axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 const ChooseMedium = () => {
   const navigate = useNavigate();
   //context provider
@@ -10,20 +11,11 @@ const ChooseMedium = () => {
   const [ispopUp, setispopUp] = modal;
   const [blog, setisBlog] = content;
   const [user] = userData;
-
-  // state for platform selection
-  const [platform, setplatform] = useState({
-    hashnode: false,
-    dev: false,
-  });
+  const [link, setlink] = useState("");
 
   // function to handle platform selection
   const onToggle = (e) => {
-    setplatform({
-      ...platform,
-      [e.target.name]: !platform[e.target.name],
-    });
-    // setIs blog to post to selected platform only
+    // setIs blog to post to selected platform onlyp
     setisBlog({
       ...blog,
       post_to: {
@@ -45,42 +37,62 @@ const ChooseMedium = () => {
     const { dev_apikey, hashnode_authorization, hashnode_publicationId } =
       api_token;
     if (!dev_apikey || !hashnode_authorization || !hashnode_publicationId) {
-      alert("Please add the token first");
+      toast.info("Please add the token first");
       navigate("/apikey");
       return;
     }
 
     if (blog.title === "") {
-      alert("Please enter a title");
+      toast.info("Please enter a title");
       return;
     }
     // check if the user has not selected any platform
     // if (!blog.post_to.hashnode || !blog.post_to.dev) {
-    //   alert("Please select a platform");
+    //   toast.info("Please select a platform");
     //   return;
     // }
 
     // check if markdown is empty
     if (blog.markdown === "") {
-      alert("Please enter some content");
+      toast.info("Please enter some content");
+      return;
+    }
+    // for image upload cover
+    // declae headers for application/ json and multipart/form-data
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    };
+    // proceed for posting
+    const fd = new FormData();
+    fd.append("cover", blog.cover);
+
+    // upload cover image
+    const coverRes = await axios.post("/image/uploadcover", fd, config);
+    console.log(coverRes.data.url);
+
+    if (coverRes.status === 400) {
+      toast.error("Error uploading cover image");
       return;
     }
 
-    // proceed for posting
     try {
       const res = await axios.post("/blog/post", {
         blog,
         user_id: user._id,
+        cover: coverRes.data.url,
       });
       if (res.status === 200) {
-        alert("Blog posted successfully");
+        toast.success("Blog posted successfully");
         setispopUp(false);
         document.body.style.overflow = "auto";
       }
     } catch (error) {
       if (error) {
+        // toast.error("Unable to post blog");
         console.log(error);
-        alert(error.response.data.message);
+        // alert(error.response.data.message);
       }
     }
   };
@@ -94,7 +106,7 @@ const ChooseMedium = () => {
             <input
               name="hashnode"
               type="checkbox"
-              checked={platform.hashnode}
+              checked={blog.post_to.hashnode}
               onChange={onToggle}
             />
             <span className={style.switch} />
@@ -106,7 +118,7 @@ const ChooseMedium = () => {
             <input
               name="dev"
               type="checkbox"
-              checked={platform.dev}
+              checked={blog.post_to.dev}
               onChange={onToggle}
             />
             <span className={style.switch} />

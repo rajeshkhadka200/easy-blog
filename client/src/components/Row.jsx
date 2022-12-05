@@ -3,15 +3,19 @@ import style from "../css/row.module.css";
 import { MdDelete } from "react-icons/md";
 import { AiTwotoneEdit } from "react-icons/ai";
 import { SiHashnode } from "react-icons/si";
-
+import { NavLink, useNavigate } from "react-router-dom";
 const Row = ({ blog }) => {
-  console.log(blog);
+  const navigate = useNavigate();
+  const EditArticle = () => {
+    navigate(`/markdown`, { state: blog._id });
+  };
+  const redirect = "/edit/" + blog._id;
   return (
     <div className={style.row}>
       <div className={style.sn}>1</div>
       <div className={style.title}>
         <div className={style.blogCover}>
-          <img src={"/cover.jpeg"} alt="not_found" />
+          <img src={blog.cover} alt="not_found" />
         </div>
         <div className={style.blogTitle}>{blog?.title}</div>
       </div>
@@ -23,7 +27,9 @@ const Row = ({ blog }) => {
 
       <div className={style.action}>
         <MdDelete size={27} />
-        <AiTwotoneEdit fontSize={27} />
+        <NavLink to={redirect}>
+          <AiTwotoneEdit fontSize={27} />
+        </NavLink>
       </div>
     </div>
   );

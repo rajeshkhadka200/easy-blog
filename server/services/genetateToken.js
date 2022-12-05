@@ -26,7 +26,7 @@ export const generateToken = async (user_id) => {
     if (userToken) {
       await userToken.remove();
     }
-    const dataToken = await new Token({
+    const dataToken = new Token({
       user_id,
       token: refreshToken,
     });

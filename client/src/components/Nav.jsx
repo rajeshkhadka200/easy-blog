@@ -12,11 +12,11 @@ import { AiFillGithub } from "react-icons/ai";
 import { useGoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
 import { ContexStore } from "../libs/Context.jsx";
+import { toast } from "react-toastify";
 
 const Nav = () => {
   const { userData } = useContext(ContexStore);
   const [user, setUser] = userData;
-  const { image, name } = user;
 
   let toks = localStorage.getItem("accessToken");
   // use navigate
@@ -48,12 +48,19 @@ const Nav = () => {
         email: profileObj.email,
         image: profileObj.imageUrl,
       });
-      const { accessToken, refreshToken } = res.data;
+      const { accessToken, refreshToken, _id, id } = res.data;
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
-      alert(res.data.message);
+      if (id) {
+        localStorage.setItem("_id", id);
+      } else {
+        localStorage.setItem("_id", _id);
+      }
+      // alert(res.data.message);
+      toast.success("Login successfully");
       window.location.href = "/app";
     } catch (error) {
+      toast.error("Unable to login please try again");
       console.log(error);
     }
   };
@@ -77,7 +84,7 @@ const Nav = () => {
         <div className={styles.links}>
           {toks ? (
             <Link to={"/app"}>
-              <img src={image} alt="" />
+              <img src={user?.image} alt="" />
             </Link>
           ) : (
             <div onClick={signIn} className={styles.login}>

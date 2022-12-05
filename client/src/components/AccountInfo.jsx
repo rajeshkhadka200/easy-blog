@@ -21,7 +21,7 @@ const AccountInfo = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setKeys({ ...keys, [name]: value });
-};
+  };
   const handleSubmit = async () => {
     setisloading(true);
     const id = user?._id;
@@ -31,6 +31,7 @@ const AccountInfo = () => {
         toast.success("Keys added successfully");
       }
     } catch (error) {
+      toast.error("Unable to add keys");
       console.log(error);
     }
   };
