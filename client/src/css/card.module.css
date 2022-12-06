@@ -19,7 +19,17 @@
   padding: 5px 10px;
   font-size: 14px;
 }
-
+.tittle_header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.tittle_header img {
+  height: 30px;
+  width: 30px;
+  outline: 2px solid var(--primary-btn);
+  border-radius: 50%;
+}
 .card_body .bottom {
   display: flex;
   justify-content: space-between;

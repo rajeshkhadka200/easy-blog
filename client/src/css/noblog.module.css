@@ -1,0 +1,44 @@
+.noblog_con {
+  height: 500px;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.noblog_con .icon {
+  fill: rgba(128, 128, 128, 0.651);
+  animation: icon_anim 1s infinite linear alternate-reverse;
+  cursor: pointer;
+}
+@keyframes icon_anim {
+  from {
+    transform: translateY(-5px);
+  }
+  to {
+    transform: translateY(0px);
+  }
+}
+
+.noblog_con .icon:hover {
+  fill: rgba(128, 128, 128, 0.829);
+}
+.border {
+  border: 1.5px solid var(--sec-bg);
+  border-radius: 50vw;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.noblog_con span {
+  margin-top: 10px;
+}
+
+.noblog_con span a {
+  color: var(--primary-btn);
+  font-size: 18px;
+}

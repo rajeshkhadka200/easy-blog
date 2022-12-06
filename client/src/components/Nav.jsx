@@ -6,7 +6,7 @@ import axios from "../libs/axios.js";
 // css and files
 import styles from "../css/nav.module.css";
 import { FaDribbble } from "react-icons/fa";
-import { AiFillGithub } from "react-icons/ai";
+import { BsGoogle } from "react-icons/bs";
 
 // login imports
 import { useGoogleLogin } from "react-google-login";
@@ -88,7 +88,7 @@ const Nav = () => {
             </Link>
           ) : (
             <div onClick={signIn} className={styles.login}>
-              <AiFillGithub size={30} />
+              <BsGoogle size={20} />
               <span>Login</span>
             </div>
           )}

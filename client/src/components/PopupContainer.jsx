@@ -3,7 +3,7 @@ import popupCon from "../css/popupcontainer.module.css";
 import ChooseMedium from "../components/Choosemedium";
 import { IoMdClose } from "react-icons/io";
 import { ContexStore } from "../libs/Context";
-import GenerateBlogInfo from "./GenerateBlogInfo";
+import UploadImg from "../components/UploadImg";
 import AccountInfo from "./AccountInfo";
 import { useNavigate } from "react-router-dom";
 const PopupContainer = ({ heading }) => {
@@ -49,7 +49,7 @@ const PopupContainer = ({ heading }) => {
             </span>
           </div>
           {pathname === "markdown" && <ChooseMedium />}
-          {isPage && <GenerateBlogInfo />}
+          {pathname === "profile" && <UploadImg />}
           {pathname === "apikey" && <AccountInfo />}
         </div>
       </div>

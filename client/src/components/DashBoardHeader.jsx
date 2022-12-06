@@ -8,7 +8,7 @@ const DashBoardHeader = ({ title }) => {
     <>
       <div className={style.header}>
         <h3>{title}</h3>
-        {pathname != "profile" ? (
+        {pathname != "profile" && pathname !== "app" ? (
           <div className={style.search}>
             <input type="text" placeholder="search blog title" />
             <button>search</button>

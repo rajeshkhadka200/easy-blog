@@ -42,6 +42,7 @@
   width: 168px;
   object-fit: cover;
   margin-left: 35px;
+  cursor: pointer;
 }
 .right_details {
   display: flex;
@@ -91,4 +92,22 @@
     flex-direction: column;
     justify-content: center;
   }
+}
+.img_con {
+  position: relative;
+}
+
+.img_con div {
+  cursor: pointer;
+  height: 35px;
+  width: 35px;
+  background-color: var(--sec-bg);
+  border-radius: 50vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 5px;
+  top: 70px;
+  border: 1px solid var(--border);
 }

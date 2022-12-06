@@ -2,17 +2,19 @@ import React, { useContext, useState } from "react";
 import { CiShare1 } from "react-icons/ci";
 import { BiImageAdd } from "react-icons/bi";
 import { AiOutlineDelete } from "react-icons/ai";
+import { BiArrowBack } from "react-icons/bi";
 import style from "../css/markdown.module.css";
 import Editor from "../components/Editor";
 
 import PopupContainer from "../components/PopupContainer";
 import { ContexStore } from "../libs/Context";
-import { Navigate } from "react-router-dom";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 const Markdown = () => {
   //  context provider
   const location = useLocation();
+  const navigate = useNavigate();
   const { modal, content } = useContext(ContexStore);
   const [ispopUp, setispopUp] = modal;
   const [blog, setisBlog] = content;
@@ -88,11 +90,15 @@ const Markdown = () => {
               </div>
             )}
           </div>
-
-          <button onClick={open}>
-            <CiShare1 fontSize={20} />
-            Publish
-          </button>
+          <div className={style.rt_btn}>
+            <div onClick={() => navigate(-1)}>
+              <BiArrowBack size={25} />
+            </div>
+            <button onClick={open}>
+              <CiShare1 fontSize={20} />
+              Publish
+            </button>
+          </div>
         </div>
         {/* input */}
         <div className={style.title}>

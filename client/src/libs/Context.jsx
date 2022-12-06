@@ -55,6 +55,8 @@ const Context = (props) => {
     }
   }, []);
 
+  // state for fetching blogs locally
+  const [isloading, setisloading] = useState(true);
   const id = localStorage.getItem("_id");
   const [myBlog, setMyBlog] = useState([]);
   useEffect(() => {
@@ -66,6 +68,7 @@ const Context = (props) => {
   const getMyBlog = async () => {
     const res = await axios.get(`/user/getmyblog/${id}`);
     setMyBlog(res.data);
+    setisloading(false);
   };
 
   const [blog, setisBlog] = useState({
@@ -86,6 +89,7 @@ const Context = (props) => {
           userData: [user, setUser],
           content: [blog, setisBlog], // blog content
           onlymyblog: [myBlog, setMyBlog],
+          loadingLocally: [isloading, setisloading],
         }}
       >
         {props.children}

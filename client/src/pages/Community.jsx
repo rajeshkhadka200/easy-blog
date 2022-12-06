@@ -6,14 +6,12 @@ import Card from "../components/Card";
 import { Navigate, useNavigate } from "react-router-dom";
 import { ContexStore } from "../libs/Context";
 const Community = () => {
-  const navigate = useNavigate();
   let id = localStorage.getItem("accessToken");
-  // useEffect(() => {
   if (!id) {
     return <Navigate to="/" replace />;
   }
-  // }, []);
 
+  
   return (
     <div className="sidebar_con">
       <Sidebar />

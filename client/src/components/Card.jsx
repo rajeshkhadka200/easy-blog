@@ -7,7 +7,10 @@ const Card = () => {
       <div className={style.card}>
         <img src="/cover.jpeg" alt="img" />
         <div className={style.card_body}>
-          <p>Introducing JUHU - A real time code collabraton tool.</p>
+          <div className={style.tittle_header}>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUdSn-b8HMufMqLVrWP3R5U8MCOjvjzkOy9w&usqp=CAU" />
+            <p>Introducing JUHU - A real time code collabraton tool.</p>
+          </div>
           <div className={style.bottom}>
             <span>Nov 28, 2022</span>
             <span>

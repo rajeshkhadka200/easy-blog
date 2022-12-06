@@ -26,7 +26,7 @@
 #rm_btn {
   color: #ff0000;
 }
-#addbtn_edit{
+#addbtn_edit {
   cursor: not-allowed;
 }
 .header .addBtn:hover {
@@ -43,6 +43,25 @@
   justify-content: center;
   align-items: center;
   gap: 5px;
+}
+.rt_btn {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.rt_btn div {
+  cursor: pointer;
+  height: 45px;
+  width: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50vw;
+  background-color: var(--sec-bg);
+  opacity: 0.9;
+}
+.rt_btn a:hover {
+  opacity: 1;
 }
 .markdownCon .title {
   margin-top: 35px;

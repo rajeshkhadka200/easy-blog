@@ -1,0 +1,42 @@
+.content {
+  padding: 15px 15px;
+}
+
+.content .body {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.body img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50vw;
+  object-fit: cover;
+  outline: 2px dotted var(--primary-btn);
+}
+.body .dotted {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  border-radius: 50vw;
+  border: 1.5px dashed var(--primary-btn);
+}
+.btnGrp {
+  display: flex;
+  gap: 5px;
+  margin-top: 15px;
+  width: 100%;
+}
+.btnGrp .remove_btn {
+  background-color: var(--sec-btn);
+}
+.btnGrp button {
+  flex: 1;
+  background-color: var(--primary-btn);
+  padding: 7px 14px;
+  border-radius: 5px;
+}

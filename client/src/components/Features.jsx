@@ -1,6 +1,8 @@
 import React from "react";
 import style from "../css/features.module.css";
 import { CiShare1 } from "react-icons/ci";
+import { VscEditorLayout } from "react-icons/vsc";
+import { AiOutlineSetting } from "react-icons/ai";
 const Features = () => {
   const data = [
     {
@@ -9,14 +11,14 @@ const Features = () => {
       text: "Immediately post articles to blogging platforms like hashnode and dev.to",
     },
     {
-      icon: <CiShare1 fontSize={25} />,
-      title: "Realtime",
-      text: "Use built in video and audio call to communicate with your co-blogger and share your ideas",
+      icon: <AiOutlineSetting fontSize={23} />,
+      title: "customize",
+      text: " easily edit and remove your blog, and it will automatically update on other blogging sites.",
     },
     {
-      icon: <CiShare1 fontSize={25} />,
-      title: "Customaze",
-      text: " easily edit and remove your blog, and it will automatically update on other blogging sites.",
+      icon: <VscEditorLayout fontSize={23} />,
+      title: "Inbuilt Editor",
+      text: "Write your blog in inbuilt markdown editor and publish it to your platform.",
     },
   ];
   return (

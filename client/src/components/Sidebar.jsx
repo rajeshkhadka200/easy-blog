@@ -7,12 +7,13 @@ import { AiOutlineUser } from "react-icons/ai";
 import { AiOutlinePlus } from "react-icons/ai";
 
 //imports
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import style from "../css/sidebar.module.css";
 import { ContexStore } from "../libs/Context";
 import PopupContainer from "../components/PopupContainer";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
   // context provider
   const { modal } = useContext(ContexStore);
   const [ispopUp, setispopUp] = modal;
@@ -21,9 +22,8 @@ const Sidebar = () => {
   const pathname = window.location.pathname.replace("/", "");
 
   // open for popup
-  const openModal = () => {
-    setispopUp(!ispopUp);
-    document.body.style.overflow = "hidden";
+  const redirect = () => {
+    navigate("/markdown");
   };
 
   // sidebar links
@@ -72,7 +72,6 @@ const Sidebar = () => {
   ];
   return (
     <>
-      {ispopUp && <PopupContainer heading="Create a blog details " />}
       <div className={style.sidebar}>
         <div className={style.links}>
           {links.map((data, i) => {
@@ -86,7 +85,7 @@ const Sidebar = () => {
           })}
         </div>
         <div className={style.last_btn}>
-          <button onClick={openModal} className={style.button}>
+          <button onClick={redirect} className={style.button}>
             <AiOutlinePlus size={20} /> Create Blog
           </button>
           {/* <span>© 2022 easyblog</span> */}

@@ -5,24 +5,29 @@ import similarStyle from "../css/dashboard.module.css";
 import ProfileHeader from "../components/ProfileHeader";
 import { Navigate, useNavigate } from "react-router-dom";
 import { ContexStore } from "../libs/Context";
+import PopupContainer from "../components/PopupContainer";
 const Profile = () => {
-  const { userData } = useContext(ContexStore);
+  //context provider
+  const { userData, modal } = useContext(ContexStore);
+  const [ispopUp, setispopUp] = modal;
   const [user, setuser] = userData;
-  const navigate = useNavigate();
-  let id = localStorage.getItem("accessToken");
 
+  let id = localStorage.getItem("accessToken");
   if (!id) {
     return <Navigate to="/" replace />;
   }
 
   return (
-    <div className="sidebar_con">
-      <Sidebar />
-      <div className={similarStyle.dash_right_side_content}>
-        <DashBoardHeader title="Rajesh Khadka" />
-        <ProfileHeader />
+    <>
+      {ispopUp && <PopupContainer heading="Choose a new image" />}
+      <div className="sidebar_con">
+        <Sidebar />
+        <div className={similarStyle.dash_right_side_content}>
+          <DashBoardHeader title={user.name} />
+          <ProfileHeader />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

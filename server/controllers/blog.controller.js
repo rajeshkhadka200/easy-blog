@@ -110,7 +110,6 @@ export const postBlog = async (req, res) => {
       };
       const resfromHashnode = await fetch(hashnodeUrl, options);
       const data = await resfromHashnode.json();
-      console.log(data);
       const { _id, title } = data.data.createPublicationStory.post;
       blogOndb.remote_id.hashnode = _id;
       console.log(_id, title);
@@ -159,7 +158,7 @@ export const deleteBlog = async (req, res) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: hashnode_authorization,
+      "Authorization": hashnode_authorization,
     },
     body: JSON.stringify({ query }),
   };
@@ -206,48 +205,46 @@ export const updateBlog = async (req, res) => {
   const { hash, mongo, dev } = req.params; // all are blog id
   const { blog, api_token } = req.body; // api token is the user api token
 
+  const { dev_apikey, hashnode_publicationId, hashnode_authorization } =
+  api_token;
+  const { title, markdown, cover } = blog;
+  
+  
   // update to dev
   const Devurl = `https://dev.to/api/articles/${dev}`;
-  const { dev_apikey, hashnode_publicationId, hashnode_authorization } =
-    api_token;
-  const { title, markdown } = blog;
-
-  try {
-    const devRes = axios.put(
-      Devurl,
-      {
-        article: {
-          title: title,
-          body_markdown: markdown,
-          published: true,
-          tags: ["test"],
-          cover_image: cover,
+  if (dev !== undefined) {
+    try {
+      const devRes = axios.put(
+        Devurl,
+        {
+          article: {
+            title: title,
+            body_markdown: markdown,
+            published: true,
+            tags: ["test"],
+            cover_image: cover,
+          },
         },
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          "api-key": dev_apikey,
-        },
-      }
-    );
-    console.log(devRes);
-    return res.status(200).json({
-      data: devRes,
-      message: "Blog updated successfully",
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(400).json({
-      message: "Unable to update to dev",
-    });
-    return;
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "api-key": dev_apikey,
+          },
+        }
+      );
+      console.log("updated in dev");
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({
+        message: "Unable to update to dev",
+      });
+      return;
+    }
   }
-
   // update to hashnode
   const hashnodeMarkdown = markdown.replace(/\n/g, "<br>");
   const hashnodeUrl = "https://api.hashnode.com";
-
+console.log(hash, hashnodeMarkdown, hashnode_publicationId, hashnode_authorization);
   const query = `
   mutation updateStory {
     updateStory (
@@ -275,39 +272,35 @@ export const updateBlog = async (req, res) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: hashnode_authorization,
+      "Authorization": hashnode_authorization,
     },
+    body: JSON.stringify({ query }),
   };
 
   try {
     const resfromHashnode = await fetch(hashnodeUrl, options);
     const data = await resfromHashnode.json();
-    console.log(data);
-    res.status(200).json({
-      data,
-      message: "Blog updated successfully",
-    });
+    console.log("updated in hashnode");
+
   } catch (error) {
     console.log(error);
     res.status(400).json({
       message: "Unable to update to hashnode",
     });
     return;
-
-    // update to mongo
-    try {
-      const updated = await blogModal.findByIdAndUpdate(mongo, blog);
-      res.status(200).json({
-        updated,
-        message: "Blog updated successfully",
-      });
-    } catch (error) {
-      console.log(error);
-      res.status(400).json({
-        message: "Unable to update to mongo",
-      });
-      return;
-    }
+  }
+  // update to mongo
+  try {
+    const updated = await blogModal.findByIdAndUpdate(mongo, blog);
+    res.status(200).json({
+      message: "Blog updated successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({
+      message: "Unable to update to mongo",
+    });
+    return;
   }
 };
 

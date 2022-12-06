@@ -2,6 +2,7 @@ import React from "react";
 import { AiFillTwitterSquare } from "react-icons/ai";
 import { AiFillInstagram } from "react-icons/ai";
 import { AiFillGithub } from "react-icons/ai";
+import { NavLink } from "react-router-dom";
 
 import style from "../css/footer.module.css";
 const Footer = () => {
@@ -17,9 +18,11 @@ const Footer = () => {
         <div className={style.social}>
           {icon.map((icon, i) => {
             return (
-              <div key={i} className={style.icon}>
-                {icon}
-              </div>
+              <a href="https://github.com/rajeshkhadka200" target={"_blank"}>
+                <div key={i} className={style.icon}>
+                  {icon}
+                </div>
+              </a>
             );
           })}
         </div>

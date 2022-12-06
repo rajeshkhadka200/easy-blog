@@ -4,6 +4,7 @@ import style from "../css/choosemedium.module.css";
 import axios from "../libs/axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Loading from "./Loading";
 const ChooseMedium = () => {
   const navigate = useNavigate();
   //context provider
@@ -11,11 +12,12 @@ const ChooseMedium = () => {
   const [ispopUp, setispopUp] = modal;
   const [blog, setisBlog] = content;
   const [user] = userData;
-  const [link, setlink] = useState("");
+
+  //state to handel loader
+  const [isloading, setisloading] = useState(true);
 
   // function to handle platform selection
   const onToggle = (e) => {
-    // setIs blog to post to selected platform onlyp
     setisBlog({
       ...blog,
       post_to: {
@@ -32,6 +34,7 @@ const ChooseMedium = () => {
   };
 
   const postBlog = async () => {
+    setisloading(true);
     // all the validations
     const { api_token } = user;
     const { dev_apikey, hashnode_authorization, hashnode_publicationId } =
@@ -43,6 +46,7 @@ const ChooseMedium = () => {
     }
 
     if (blog.title === "") {
+      setisloading(false);
       toast.info("Please enter a title");
       return;
     }
@@ -54,11 +58,11 @@ const ChooseMedium = () => {
 
     // check if markdown is empty
     if (blog.markdown === "") {
+      setisloading(false);
       toast.info("Please enter some content");
       return;
     }
-    // for image upload cover
-    // declae headers for application/ json and multipart/form-data
+
     const config = {
       headers: {
         "Content-Type": "multipart/form-data",
@@ -70,9 +74,8 @@ const ChooseMedium = () => {
 
     // upload cover image
     const coverRes = await axios.post("/image/uploadcover", fd, config);
-    console.log(coverRes.data.url);
-
     if (coverRes.status === 400) {
+      setisloading(false);
       toast.error("Error uploading cover image");
       return;
     }
@@ -86,10 +89,12 @@ const ChooseMedium = () => {
       if (res.status === 200) {
         toast.success("Blog posted successfully");
         setispopUp(false);
+        setisloading(false);
         document.body.style.overflow = "auto";
       }
     } catch (error) {
       if (error) {
+        setisloading(false);
         // toast.error("Unable to post blog");
         console.log(error);
         // alert(error.response.data.message);
@@ -127,7 +132,7 @@ const ChooseMedium = () => {
 
         <div className={style.btnGrp}>
           <button onClick={close}>Cancel</button>
-          <button onClick={postBlog}>Post</button>
+          <button onClick={postBlog}>{isloading ? <Loading /> : "Post"}</button>
         </div>
       </div>
     </>
