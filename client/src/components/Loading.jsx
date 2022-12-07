@@ -1,7 +1,11 @@
 import React from "react";
-import style from "../css/loading.module.css";
-const Loading = () => {
-  return <>Loading ...</>;
+import CircularProgress from "@mui/material/CircularProgress";
+const Loading = ({ size }) => {
+  return (
+    <>
+      <CircularProgress size={size} color="secondary" />
+    </>
+  );
 };
 
 export default Loading;

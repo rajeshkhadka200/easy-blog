@@ -77,7 +77,7 @@ const Sidebar = () => {
           {links.map((data, i) => {
             const { name, icon, path } = data;
             return (
-              <NavLink activeClassName="active" to={path}>
+              <NavLink key={i} activeClassName="active" to={path}>
                 {icon}
                 {name}
               </NavLink>
@@ -88,7 +88,6 @@ const Sidebar = () => {
           <button onClick={redirect} className={style.button}>
             <AiOutlinePlus size={20} /> Create Blog
           </button>
-          {/* <span>© 2022 easyblog</span> */}
         </div>
       </div>
     </>

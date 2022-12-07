@@ -68,8 +68,25 @@ const Context = (props) => {
   const getMyBlog = async () => {
     const res = await axios.get(`/user/getmyblog/${id}`);
     setMyBlog(res.data);
-    setisloading(false);
+    setTimeout(() => {
+      setisloading(false);
+    }, 1000);
   };
+
+  // fetching all blog
+  const [allBlog, setallBlog] = useState([]);
+  const [isloadingAllblog, setisloadingAllblog] = useState(true);
+  const getAllBlog = async () => {
+    const res = await axios.get("/blog/getall");
+    setallBlog(res.data);
+    setTimeout(() => {
+      setisloadingAllblog(false);
+    }, 1000);
+  };
+
+  useEffect(() => {
+    getAllBlog();
+  }, []);
 
   const [blog, setisBlog] = useState({
     title: "",
@@ -81,6 +98,8 @@ const Context = (props) => {
     },
     published_on: "",
   });
+
+  const [searchBlog, setsearchBlog] = useState([]);
   return (
     <>
       <ContexStore.Provider
@@ -89,7 +108,10 @@ const Context = (props) => {
           userData: [user, setUser],
           content: [blog, setisBlog], // blog content
           onlymyblog: [myBlog, setMyBlog],
-          loadingLocally: [isloading, setisloading],
+          loadingLocally: [isloading, setisloading], // for table
+          commBlog: [allBlog, setallBlog],
+          commLoader: [isloadingAllblog, setisloadingAllblog],
+          search: [searchBlog, setsearchBlog],
         }}
       >
         {props.children}

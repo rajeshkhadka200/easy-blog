@@ -19,6 +19,7 @@
   background-color: var(--primary-btn);
   padding: 7px 14px;
   border-radius: 5px;
+  /* min-height: 20px; */
 }
 .btnGrp button:nth-child(1) {
   background-color: var(--sec-btn);

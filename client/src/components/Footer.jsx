@@ -6,21 +6,30 @@ import { NavLink } from "react-router-dom";
 
 import style from "../css/footer.module.css";
 const Footer = () => {
-  let icon = [
-    <AiFillTwitterSquare fontSize={20} />,
-    <AiFillInstagram fontSize={20} />,
-    <AiFillGithub fontSize={20} />,
+  let footerIcon = [
+    {
+      icon: <AiFillTwitterSquare fontSize={20} />,
+      link: "https://twitter.com/rajeshkhadka200",
+    },
+    {
+      icon: <AiFillInstagram fontSize={20} />,
+      link: "https://www.instagram.com/rajeshkhadka200/",
+    },
+    {
+      icon: <AiFillGithub fontSize={20} />,
+      link: "https://github.com/rajeshkhadka200",
+    },
   ];
   return (
     <footer>
       <div className={style.left}>
         <p>Made with ❤️ by Rajesh Khadka </p>
         <div className={style.social}>
-          {icon.map((icon, i) => {
+          {footerIcon.map((data, i) => {
             return (
-              <a href="https://github.com/rajeshkhadka200" target={"_blank"}>
+              <a key={i} href={data.link} target={"_blank"}>
                 <div key={i} className={style.icon}>
-                  {icon}
+                  {data.icon}
                 </div>
               </a>
             );

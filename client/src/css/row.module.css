@@ -57,3 +57,12 @@
 .action * {
   color: rgb(153, 153, 153);
 }
+
+.dlt{
+  /* height: 10px; */
+  /* width: 10px; */
+  /* background-color: var(--sec-btn); */
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+}

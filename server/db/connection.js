@@ -3,7 +3,7 @@ const url = process.env.MONGO_URL;
 
 export const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(url, {
+    const conn = mongoose.connect(url, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });

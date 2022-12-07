@@ -21,19 +21,32 @@ function App() {
       <ToastContainer
         theme="colored"
         style={{
+          color: "",
           zIndex: 999999,
         }}
       />
       <Nav />
-      <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/app" element={<Dashboard />}></Route>
-        <Route path="/markdown" element={<Markdown />}></Route>
-        <Route path="/profile" element={<Profile />}></Route>
-        <Route path="/all-blogs" element={<Community />}></Route>
-        <Route path="/apikey" element={<Key />}></Route>
-        <Route path="/edit/:blogid" element={<Edit />}></Route>
-      </Routes>
+      <div className="responsive">
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/app" element={<Dashboard />}></Route>
+          <Route path="/markdown" element={<Markdown />}></Route>
+          <Route path="/profile" element={<Profile />}></Route>
+          <Route path="/all-blogs" element={<Community />}></Route>
+          <Route path="/apikey" element={<Key />}></Route>
+          <Route path="/edit/:blogid" element={<Edit />}></Route>
+        </Routes>
+      </div>
+      <div className="mesg_view">
+        Website currently doesnot works on a small devices. <br />
+        <button
+          onClick={() => {
+            alert("This feature is not available yet");
+          }}
+        >
+          Make large
+        </button>
+      </div>
     </>
   );
 }

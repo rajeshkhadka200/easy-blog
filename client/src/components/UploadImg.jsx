@@ -3,6 +3,7 @@ import style from "../css/uploadimg.module.css";
 import { ContexStore } from "../libs/Context";
 import { AiOutlineUpload } from "react-icons/ai";
 import axios from "../libs/axios.js";
+import Loading from "./Loading";
 const GenerateBlogInfo = () => {
   //context provider
   const { userData } = useContext(ContexStore);
@@ -27,7 +28,13 @@ const GenerateBlogInfo = () => {
     });
   };
 
+  const [loading, setloading] = useState(false);
   const uploadImage = async () => {
+    if (avatar.url === "" || avatar.file === "") {
+      setloading(false);
+      return;
+    }
+    setloading(true);
     try {
       const config = {
         headers: {
@@ -41,8 +48,12 @@ const GenerateBlogInfo = () => {
         fd,
         config
       );
-      window.location.reload();
-      console.log(res);
+      if (res.status === 200) {
+        setTimeout(() => {
+          window.location.reload();
+          setloading(false);
+        }, 1000);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -62,6 +73,8 @@ const GenerateBlogInfo = () => {
         <div className={style.btnGrp}>
           {avatar?.url && (
             <button
+              id={loading && "not_allowed"}
+              disabled={loading}
               onClick={() => {
                 setAvatar({
                   url: "",
@@ -73,7 +86,13 @@ const GenerateBlogInfo = () => {
               Remove image
             </button>
           )}
-          <button onClick={uploadImage}>Change</button>
+          <button
+            id={loading && "not_allowed"}
+            disabled={loading}
+            onClick={uploadImage}
+          >
+            {loading ? <Loading size={18} /> : "Change"}
+          </button>
         </div>
       </div>
     </>

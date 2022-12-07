@@ -19,7 +19,6 @@ const Dashboard = () => {
         <Sidebar />
         <div className={style.dash_right_side_content}>
           <DashBoardHeader title="Your Blogpost" />
-
           {/* render the cards */}
           <div className={style.dash_table_con}>
             <Table />

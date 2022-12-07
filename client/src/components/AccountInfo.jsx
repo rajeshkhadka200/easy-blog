@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "../libs/axios.js";
 import { ContexStore } from "../libs/Context";
 import { toast } from "react-toastify";
+import Loading from "./Loading";
 
 const AccountInfo = () => {
   const [isloading, setisloading] = useState(false);
@@ -28,11 +29,15 @@ const AccountInfo = () => {
     try {
       const res = await axios.patch(`/user/addkey/${id}`, { keys });
       if (res.status === 200) {
-        toast.success("Keys added successfully");
+        setTimeout(() => {
+          toast.success("Keys added successfully");
+          setisloading(false);
+        }, 1000);
       }
     } catch (error) {
+      setisloading(false);
       toast.error("Unable to add keys");
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -76,14 +81,21 @@ const AccountInfo = () => {
         </div>
         <div className={style.btnGrp}>
           <button
+            id={isloading && "not_allowed"}
+            disabled={isloading}
             onClick={() => {
               navigate("/app");
             }}
           >
             Cancel
           </button>
-          <button type="button" onClick={handleSubmit}>
-            Save
+          <button
+            id={isloading && "not_allowed"}
+            disabled={isloading}
+            type="button"
+            onClick={handleSubmit}
+          >
+            {isloading ? <Loading size={15} /> : "Save"}
           </button>
         </div>
       </div>

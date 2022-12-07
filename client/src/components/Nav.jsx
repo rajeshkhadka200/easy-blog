@@ -57,7 +57,7 @@ const Nav = () => {
         localStorage.setItem("_id", _id);
       }
       // alert(res.data.message);
-      toast.success("Login successfully");
+      // toast.success("Login successfully");
       window.location.href = "/app";
     } catch (error) {
       toast.error("Unable to login please try again");

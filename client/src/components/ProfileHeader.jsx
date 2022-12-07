@@ -6,8 +6,9 @@ import { AiOutlineCamera } from "react-icons/ai";
 import { AiOutlineSetting } from "react-icons/ai";
 import { ContexStore } from "../libs/Context";
 import axios from "../libs/axios.js";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 const ProfileHeader = () => {
+  const navigate = useNavigate();
   const { userData, onlymyblog, modal } = useContext(ContexStore);
   const [user, setUser] = userData;
   const [ispopUp, setispopUp] = modal;
@@ -59,12 +60,14 @@ const ProfileHeader = () => {
             </div>
           </div>
           <div className={style.right_details}>
-            <NavLink to="/apikey">
-              <button>
-                <AiOutlineSetting size={18} />
-                Edit Credientials
-              </button>
-            </NavLink>
+            <button
+              onClick={() => {
+                navigate("/apikey");
+              }}
+            >
+              <AiOutlineSetting size={18} />
+              Edit Credientials
+            </button>
             <button onClick={logout}>
               <FiLogOut size={18} />
               Logout

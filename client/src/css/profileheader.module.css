@@ -61,7 +61,7 @@
   background-color: var(--sec-btn);
 }
 
-@media screen and (max-width: 1130px) {
+@media screen and (max-width: 1030px) {
   .details {
     flex-direction: column;
   }
@@ -91,6 +91,10 @@
   .right_details {
     flex-direction: column;
     justify-content: center;
+  }
+
+  .empty_box h3 {
+    font-size: 30px;
   }
 }
 .img_con {

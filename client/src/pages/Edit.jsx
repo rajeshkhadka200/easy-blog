@@ -4,20 +4,23 @@ import style from "../css/markdown.module.css";
 import { BiImageAdd } from "react-icons/bi";
 import { CiShare1 } from "react-icons/ci";
 import { useParams } from "react-router-dom";
-import Editor from "../components/Editor";
 
 // for markdown
 import MdEditor from "react-markdown-editor-lite";
 import "react-markdown-editor-lite/lib/index.css";
 import ReactMarkdown from "react-markdown";
 import { ContexStore } from "../libs/Context.jsx";
+import Loading from "../components/Loading.jsx";
+import { toast } from "react-toastify";
 
 const Edit = () => {
   // context provider
-  const { content } = useContext(ContexStore);
+  const { content, userData } = useContext(ContexStore);
   const [blog, setisBlog] = content;
+
+  const [user] = userData;
   const { blogid } = useParams();
-  console.log(blog);
+
   const [fromDB, setfromDB] = useState([]);
 
   useEffect(() => {
@@ -58,7 +61,30 @@ const Edit = () => {
     });
   };
 
-  const updatePost = async () => {};
+  const [loading, setloading] = useState(false);
+  const updatePost = async () => {
+    setloading(true);
+    try {
+      const res = await axios.patch("/blog/update", {
+        blog,
+        api_token: user.api_token,
+        remote_id: {
+          hashid: fromDB.remote_id.hashnode,
+          devid: fromDB.remote_id.dev,
+          mongoid: fromDB._id,
+        },
+      });
+      if (res.status === 200) {
+        setloading(false);
+        toast.success("Updated successfully");
+        window.location.href = "/app";
+      }
+    } catch (error) {
+      setloading(false);
+      console.log(error);
+      toast.error("Unable to update blog");
+    }
+  };
 
   return (
     <>
@@ -72,9 +98,21 @@ const Edit = () => {
             </div>
           </div>
 
-          <button onClick={updatePost}>
-            <CiShare1 fontSize={20} />
-            Update
+          <button
+            id={loading && "not_allowed"}
+            disabled={loading}
+            onClick={updatePost}
+          >
+            {loading ? (
+              <>
+                Updating &nbsp; <Loading size={18} />
+              </>
+            ) : (
+              <>
+                <CiShare1 fontSize={20} />
+                Update
+              </>
+            )}
           </button>
         </div>
         {/* input */}

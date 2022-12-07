@@ -9,8 +9,8 @@ const Hero = () => {
         <div className={style.left}>
           <h2>Write once, share to many </h2>
           <p>
-            Introducung <span>Easy blog</span>, a platform from where you can
-            easily post your blogpost to diffrent platforms (dev, hashnode) at
+            Introducing <span>Easy blog</span>, a platform from where you can
+            easily post your blogpost to diffrent blogging platforms (dev, hashnode) at
             once.
           </p>
           <div className={style.btn}>

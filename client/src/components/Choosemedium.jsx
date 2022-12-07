@@ -14,7 +14,7 @@ const ChooseMedium = () => {
   const [user] = userData;
 
   //state to handel loader
-  const [isloading, setisloading] = useState(true);
+  const [isloading, setisloading] = useState(false);
 
   // function to handle platform selection
   const onToggle = (e) => {
@@ -51,15 +51,21 @@ const ChooseMedium = () => {
       return;
     }
     // check if the user has not selected any platform
-    // if (!blog.post_to.hashnode || !blog.post_to.dev) {
-    //   toast.info("Please select a platform");
-    //   return;
-    // }
+    if (!blog.post_to.hashnode || !blog.post_to.dev) {
+      setisloading(false);
+      toast.info("Please select a platform");
+      return;
+    }
 
     // check if markdown is empty
     if (blog.markdown === "") {
       setisloading(false);
       toast.info("Please enter some content");
+      return;
+    }
+    if (blog.cover === "") {
+      setisloading(false);
+      toast.info("Please select a cover image");
       return;
     }
 
@@ -85,6 +91,7 @@ const ChooseMedium = () => {
         blog,
         user_id: user._id,
         cover: coverRes.data.url,
+        profile_pic: user.image,
       });
       if (res.status === 200) {
         toast.success("Blog posted successfully");
@@ -132,7 +139,9 @@ const ChooseMedium = () => {
 
         <div className={style.btnGrp}>
           <button onClick={close}>Cancel</button>
-          <button onClick={postBlog}>{isloading ? <Loading /> : "Post"}</button>
+          <button onClick={postBlog}>
+            {isloading ? <Loading size={18} /> : "Post"}
+          </button>
         </div>
       </div>
     </>

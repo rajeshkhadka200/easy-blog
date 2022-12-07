@@ -8,7 +8,7 @@ import blogModal from "../models/blog.modal.js";
 // this is the code for posting the blog in hashnode and in dev
 export const postBlog = async (req, res) => {
   const { blog } = req.body;
-  const { user_id } = req.body;
+  const { user_id, profile_pic } = req.body;
   const { post_to } = req.body.blog;
   const user = await User.findById(user_id);
   const { api_token } = user;
@@ -27,6 +27,7 @@ export const postBlog = async (req, res) => {
     },
     published_by: user_id,
     published_on: moment().format("ll"),
+    published_by_profile: profile_pic,
   };
 
   if (post_to.dev) {
@@ -110,7 +111,7 @@ export const postBlog = async (req, res) => {
       };
       const resfromHashnode = await fetch(hashnodeUrl, options);
       const data = await resfromHashnode.json();
-      const { _id, title } = data.data.createPublicationStory.post;
+      const { _id } = data.data.createPublicationStory.post;
       blogOndb.remote_id.hashnode = _id;
       console.log(_id, title);
     } catch (error) {
@@ -158,7 +159,7 @@ export const deleteBlog = async (req, res) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": hashnode_authorization,
+      Authorization: hashnode_authorization,
     },
     body: JSON.stringify({ query }),
   };
@@ -202,17 +203,15 @@ export const getBlogById = async (req, res) => {
 };
 // update to the hashnode and dev
 export const updateBlog = async (req, res) => {
-  const { hash, mongo, dev } = req.params; // all are blog id
-  const { blog, api_token } = req.body; // api token is the user api token
-
+  const { blog, api_token, remote_id } = req.body; // api token is the user api token
   const { dev_apikey, hashnode_publicationId, hashnode_authorization } =
-  api_token;
+    api_token;
+  const { hashid, mongoid, devid } = remote_id;
   const { title, markdown, cover } = blog;
-  
-  
+
   // update to dev
-  const Devurl = `https://dev.to/api/articles/${dev}`;
-  if (dev !== undefined) {
+  const Devurl = `https://dev.to/api/articles/${devid}`;
+  if (devid !== "") {
     try {
       const devRes = axios.put(
         Devurl,
@@ -236,19 +235,20 @@ export const updateBlog = async (req, res) => {
     } catch (error) {
       console.log(error);
       res.status(400).json({
+        error,
         message: "Unable to update to dev",
       });
       return;
     }
   }
   // update to hashnode
-  const hashnodeMarkdown = markdown.replace(/\n/g, "<br>");
-  const hashnodeUrl = "https://api.hashnode.com";
-console.log(hash, hashnodeMarkdown, hashnode_publicationId, hashnode_authorization);
-  const query = `
+  if (hashid !== "") {
+    const hashnodeMarkdown = markdown.replace(/\n/g, "<br>");
+    const hashnodeUrl = "https://api.hashnode.com";
+    const query = `
   mutation updateStory {
     updateStory (
-      postId : "${hash}",
+      postId : "${hashid}",
       input : {
         title : "${title}",
         contentMarkdown : "${hashnodeMarkdown}",
@@ -268,36 +268,41 @@ console.log(hash, hashnodeMarkdown, hashnode_publicationId, hashnode_authorizati
   }
   `;
 
-  const options = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": hashnode_authorization,
-    },
-    body: JSON.stringify({ query }),
-  };
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: hashnode_authorization,
+      },
+      body: JSON.stringify({ query }),
+    };
 
-  try {
-    const resfromHashnode = await fetch(hashnodeUrl, options);
-    const data = await resfromHashnode.json();
-    console.log("updated in hashnode");
-
-  } catch (error) {
-    console.log(error);
-    res.status(400).json({
-      message: "Unable to update to hashnode",
-    });
-    return;
+    try {
+      const resfromHashnode = await fetch(hashnodeUrl, options);
+      const data = await resfromHashnode.json();
+      console.log("updated in hashnode");
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({
+        error,
+        message: "Unable to update to hashnode",
+      });
+      return;
+    }
   }
   // update to mongo
   try {
-    const updated = await blogModal.findByIdAndUpdate(mongo, blog);
+    const updated = await blogModal.findByIdAndUpdate(mongoid, {
+      title: blog.title,
+      markdown: blog.markdown,
+    });
     res.status(200).json({
       message: "Blog updated successfully",
     });
   } catch (error) {
     console.log(error);
     res.status(400).json({
+      error,
       message: "Unable to update to mongo",
     });
     return;
@@ -306,6 +311,7 @@ console.log(hash, hashnodeMarkdown, hashnode_publicationId, hashnode_authorizati
 
 // development controller
 export const getAllBlog = async (req, res) => {
+  console.log("hello");
   const allBlog = await blogModal.find();
   res.status(200).send(allBlog);
   return;
@@ -316,4 +322,15 @@ export const deletemany = async (req, res) => {
   res.status(200).json({
     message: "deleted",
   });
+};
+
+export const searchBlog = async (req, res) => {
+  const { search } = req.params;
+  const regex = new RegExp(search, "i");
+  const searchBlog = await blogModal.find({
+    $or: [{ title: regex }, { markdown: regex }],
+  });
+
+  res.status(200).send(searchBlog);
+  return;
 };

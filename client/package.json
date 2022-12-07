@@ -9,6 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.10.17",
     "@uiw/react-md-editor": "^3.19.7",
     "axios": "^1.2.0",
     "file-loader": "^6.2.0",

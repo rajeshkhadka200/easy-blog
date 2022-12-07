@@ -13,6 +13,7 @@ const blogSchema = new mongoose.Schema({
   },
   published_by: { type: String, required: true },
   published_on: { type: String, required: true },
+  published_by_profile: { type: String, required: true },
 });
 
 // Creating model for blog
