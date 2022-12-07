@@ -12,3 +12,5 @@ client/yarn.lock
 
 #global
 /todo.todo
+
+/server/upload
