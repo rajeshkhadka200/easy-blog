@@ -29,14 +29,15 @@ const Community = () => {
         )}
         <div className={similarStyle.card_con}>
           {allBlog.length === 0 && isloadingAllblog === false && <NoBlog />}
-          {allBlog.map((blog) => {
-            return <Card key={blog._id} blog={blog} />;
-          })}
-          {searchBlog.length > 0 &&
-            searchBlog.map((blog) => {
-              
+          {!isloadingAllblog &&
+            allBlog.map((blog) => {
               return <Card key={blog._id} blog={blog} />;
             })}
+
+          {/* {searchBlog.length > 0 &&
+            searchBlog.map((blog) => {
+              return <Card key={blog._id} blog={blog} />;
+            })} */}
         </div>
       </div>
     </div>

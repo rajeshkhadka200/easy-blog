@@ -23,9 +23,10 @@ const Table = () => {
         )}
         {/* single row of table */}
         {myBlog.length === 0 && isloding === false && <NoBlog />}
-        {myBlog.map((blog, i) => {
-          return <Row key={blog._id} blog={blog} sn={i} />;
-        })}
+        {!isloding &&
+          myBlog.map((blog, i) => {
+            return <Row key={blog._id} blog={blog} sn={i} />;
+          })}
       </div>
     </>
   );
