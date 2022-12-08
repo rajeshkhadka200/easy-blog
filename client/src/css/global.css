@@ -131,7 +131,7 @@ input {
   flex-direction: column;
 } */
 
-.mesg_view button{
+.mesg_view button {
   background-color: var(--primary-btn);
   padding: 7px 14px;
   width: 100%;
@@ -144,5 +144,11 @@ input {
   }
   .mesg_view {
     display: block;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .mesg_view {
+    width: 90%;
   }
 }

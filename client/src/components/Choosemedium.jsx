@@ -51,7 +51,7 @@ const ChooseMedium = () => {
       return;
     }
     // check if the user has not selected any platform
-    if (!blog.post_to.hashnode || !blog.post_to.dev) {
+    if (!blog.post_to.hashnode && !blog.post_to.dev) {
       setisloading(false);
       toast.info("Please select a platform");
       return;
@@ -96,15 +96,17 @@ const ChooseMedium = () => {
       if (res.status === 200) {
         toast.success("Blog posted successfully");
         setispopUp(false);
-        setisloading(false);
         document.body.style.overflow = "auto";
+        setTimeout(() => {
+          setisloading(false);
+          window.location.href = "/app";
+        }, 1000);
       }
     } catch (error) {
       if (error) {
         setisloading(false);
-        // toast.error("Unable to post blog");
+        toast.error("Unable to post blog 😢");
         console.log(error);
-        // alert(error.response.data.message);
       }
     }
   };

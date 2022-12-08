@@ -34,6 +34,7 @@ const Community = () => {
           })}
           {searchBlog.length > 0 &&
             searchBlog.map((blog) => {
+              
               return <Card key={blog._id} blog={blog} />;
             })}
         </div>

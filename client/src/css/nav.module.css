@@ -41,6 +41,7 @@ nav .links {
   border-radius: 50%;
   border: 3px solid var(--primary-btn);
   cursor: pointer;
+  background-color: #5353536c;
 }
 .login {
   display: flex;
@@ -56,4 +57,14 @@ nav .links {
 .login span {
   color: var(--p-color);
   font-weight: 400;
+}
+
+.watch {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }

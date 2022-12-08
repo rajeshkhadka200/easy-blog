@@ -13,6 +13,7 @@ import { useGoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
 import { ContexStore } from "../libs/Context.jsx";
 import { toast } from "react-toastify";
+import { MdOndemandVideo } from "react-icons/md";
 
 const Nav = () => {
   const { userData } = useContext(ContexStore);
@@ -56,8 +57,7 @@ const Nav = () => {
       } else {
         localStorage.setItem("_id", _id);
       }
-      // alert(res.data.message);
-      // toast.success("Login successfully");
+
       window.location.href = "/app";
     } catch (error) {
       toast.error("Unable to login please try again");
@@ -70,6 +70,7 @@ const Nav = () => {
     clientId,
     onFailure,
   });
+
   return (
     <>
       <nav>
@@ -82,16 +83,32 @@ const Nav = () => {
           </Link>
         </div>
         <div className={styles.links}>
-          {toks ? (
-            <Link to={"/app"}>
-              <img src={user?.image} alt="" />
-            </Link>
-          ) : (
-            <div onClick={signIn} className={styles.login}>
-              <BsGoogle size={20} />
-              <span>Login</span>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "5px",
+            }}
+          >
+            <div
+              onClick={() => {
+                window.open("https://localhost:3000", "_easy");
+              }}
+              className={styles.watch}
+            >
+              <MdOndemandVideo size={20} />
             </div>
-          )}
+            {toks ? (
+              <Link to={"/app"}>
+                <img src={user?.image} alt="" />
+              </Link>
+            ) : (
+              <div onClick={signIn} className={styles.login}>
+                <BsGoogle size={20} />
+                <span>Login</span>
+              </div>
+            )}
+          </div>
         </div>
       </nav>
     </>

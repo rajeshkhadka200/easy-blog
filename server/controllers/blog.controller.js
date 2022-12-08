@@ -105,7 +105,7 @@ export const postBlog = async (req, res) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: hashnode_authorization,
+          "Authorization": hashnode_authorization,
         },
         body: JSON.stringify({ query }),
       };
@@ -113,7 +113,6 @@ export const postBlog = async (req, res) => {
       const data = await resfromHashnode.json();
       const { _id } = data.data.createPublicationStory.post;
       blogOndb.remote_id.hashnode = _id;
-      console.log(_id, title);
     } catch (error) {
       console.log(error);
 
@@ -159,7 +158,7 @@ export const deleteBlog = async (req, res) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: hashnode_authorization,
+      "Authorization": hashnode_authorization,
     },
     body: JSON.stringify({ query }),
   };
@@ -208,6 +207,7 @@ export const updateBlog = async (req, res) => {
     api_token;
   const { hashid, mongoid, devid } = remote_id;
   const { title, markdown, cover } = blog;
+  console.log("blog", blog);
 
   // update to dev
   const Devurl = `https://dev.to/api/articles/${devid}`;
@@ -256,6 +256,7 @@ export const updateBlog = async (req, res) => {
           publicationId : "${hashnode_publicationId}",
         },
         tags : []
+        coverImageURL : "${cover}",
       }
     ){
       code,
@@ -272,7 +273,7 @@ export const updateBlog = async (req, res) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: hashnode_authorization,
+        "Authorization" : hashnode_authorization,
       },
       body: JSON.stringify({ query }),
     };
@@ -311,7 +312,6 @@ export const updateBlog = async (req, res) => {
 
 // development controller
 export const getAllBlog = async (req, res) => {
-  console.log("hello");
   const allBlog = await blogModal.find();
   res.status(200).send(allBlog);
   return;

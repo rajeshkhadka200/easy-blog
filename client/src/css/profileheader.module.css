@@ -43,6 +43,7 @@
   object-fit: cover;
   margin-left: 35px;
   cursor: pointer;
+  background-color: #171717d0;
 }
 .right_details {
   display: flex;

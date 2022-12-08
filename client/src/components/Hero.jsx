@@ -1,8 +1,10 @@
-import axios from "../libs/axios.js";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import style from "../css/hero.module.css";
-import PopupContainer from "./PopupContainer";
+
 const Hero = () => {
+  const navigate = useNavigate();
+  let id = localStorage.getItem("accessToken");
   return (
     <>
       <div className={style.hero}>
@@ -10,11 +12,31 @@ const Hero = () => {
           <h2>Write once, share to many </h2>
           <p>
             Introducing <span>Easy blog</span>, a platform from where you can
-            easily post your blogpost to diffrent blogging platforms (dev, hashnode) at
-            once.
+            easily post your blogpost to diffrent blogging platforms (dev,
+            hashnode) at once.
           </p>
           <div className={style.btn}>
-            <button>Get started</button>
+            {id ? (
+              <button
+                onClick={() => {
+                  navigate("/app");
+                }}
+              >
+                Go to dashboard
+              </button>
+            ) : (
+              <button
+                onClick={() => {
+                  window.open(
+                    "https://www.youtube.com/watch?v=Q7AOvWpIVHU",
+                    "_blank"
+                  );
+                }}
+              >
+                Watch video
+              </button>
+            )}
+
             {/* <button>View on github</button> */}
           </div>
         </div>
