@@ -100,6 +100,10 @@ const Context = (props) => {
   });
 
   const [searchBlog, setsearchBlog] = useState([]);
+  const [ids, setids] = useState({
+    hashblogid: "",
+    mongoblogid: "",
+  });
   return (
     <>
       <ContexStore.Provider
@@ -112,6 +116,7 @@ const Context = (props) => {
           commBlog: [allBlog, setallBlog],
           commLoader: [isloadingAllblog, setisloadingAllblog],
           search: [searchBlog, setsearchBlog],
+          dltids: [ids, setids],
         }}
       >
         {props.children}

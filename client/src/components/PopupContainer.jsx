@@ -6,8 +6,8 @@ import { ContexStore } from "../libs/Context";
 import UploadImg from "../components/UploadImg";
 import AccountInfo from "./AccountInfo";
 import { useNavigate } from "react-router-dom";
+import AreYousure from "./AreYousure";
 const PopupContainer = ({ heading }) => {
-  // usnavigate
   const navigate = useNavigate();
 
   // context provider
@@ -51,6 +51,7 @@ const PopupContainer = ({ heading }) => {
           {pathname === "markdown" && <ChooseMedium />}
           {pathname === "profile" && <UploadImg />}
           {pathname === "apikey" && <AccountInfo />}
+          {pathname === "app" && <AreYousure />}
         </div>
       </div>
     </>

@@ -1,7 +1,6 @@
 import express from "express";
 import {
   deleteBlog,
-  deletemany,
   getAllBlog,
   getBlogById,
   postBlog,
@@ -14,9 +13,8 @@ router.post("/post", postBlog);
 router.get("/getblogbyid/:blogid", getBlogById);
 router.delete("/delete/:hashnodeblogid/:mongoblogid", deleteBlog);
 router.patch("/update", updateBlog);
-router.get('/search/:search', searchBlog)
+router.get("/search/:search", searchBlog);
 
 // development routes
 router.get("/getall", getAllBlog);
-router.get("/deleteall", deletemany);
 export default router;

@@ -32,6 +32,7 @@ const AccountInfo = () => {
         setTimeout(() => {
           toast.success("Keys added successfully");
           setisloading(false);
+          window.location.href = "/app";
         }, 1000);
       }
     } catch (error) {

@@ -8,7 +8,7 @@ const Card = ({ blog }) => {
         <img src={blog?.cover} alt="img" />
         <div className={style.card_body}>
           <div className={style.tittle_header}>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUdSn-b8HMufMqLVrWP3R5U8MCOjvjzkOy9w&usqp=CAU" />
+            <img src={blog?.published_by} />
             <p>{blog?.title}</p>
           </div>
           <div className={style.bottom}>

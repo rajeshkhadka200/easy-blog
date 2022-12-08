@@ -105,7 +105,7 @@ export const postBlog = async (req, res) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": hashnode_authorization,
+          Authorization: hashnode_authorization,
         },
         body: JSON.stringify({ query }),
       };
@@ -158,7 +158,7 @@ export const deleteBlog = async (req, res) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": hashnode_authorization,
+      Authorization: hashnode_authorization,
     },
     body: JSON.stringify({ query }),
   };
@@ -273,7 +273,7 @@ export const updateBlog = async (req, res) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization" : hashnode_authorization,
+        Authorization: hashnode_authorization,
       },
       body: JSON.stringify({ query }),
     };
@@ -315,13 +315,6 @@ export const getAllBlog = async (req, res) => {
   const allBlog = await blogModal.find();
   res.status(200).send(allBlog);
   return;
-};
-
-export const deletemany = async (req, res) => {
-  await blogModal.deleteMany();
-  res.status(200).json({
-    message: "deleted",
-  });
 };
 
 export const searchBlog = async (req, res) => {

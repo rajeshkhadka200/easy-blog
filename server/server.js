@@ -24,6 +24,13 @@ app.use("/api/user", userRoutes); // this is the route for the user routes
 app.use("/api/token", tokenRoutes);
 app.use("/api/blog", blogRoutes);
 app.use("/api/image", imageRoutes);
+
+// check
+app.get("/", (req, res) => {
+  res.status(200).json({
+    message: "hello world ✅❤",
+  });
+});
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
   console.log(`running on port ${port}`);

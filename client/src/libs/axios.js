@@ -1,8 +1,8 @@
 import axios from "axios";
-let mode = "prod";
+let mode = "dev";
 const instatnce = axios.create({
   baseURL:
-    mode === "development"
+    mode === "dev"
       ? "http://localhost:8000/api"
       : "https://easyblogproject.herokuapp.com/api",
 });

@@ -1,17 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import Sidebar from "../components/Sidebar";
 import style from "../css/dashboard.module.css";
 import Table from "../components/Table";
 import DashBoardHeader from "../components/DashBoardHeader";
 import { Navigate } from "react-router-dom";
+import { ContexStore } from "../libs/Context";
+import PopupContainer from "../components/PopupContainer";
 
 const Dashboard = () => {
   let id = localStorage.getItem("accessToken");
-  // useEffect(() => {
+
   if (!id) {
     return <Navigate to="/" replace />;
   }
-  // }, []);
 
   return (
     <>

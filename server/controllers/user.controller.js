@@ -111,17 +111,3 @@ export const logout = async (req, res) => {
   }
 };
 
-// development controller
-
-export const getAllUser = async (req, res) => {
-  const alluser = await User.find();
-  res.status(200).send(alluser);
-  return;
-};
-
-export const deletemanyuser = async (req, res) => {
-  await User.deleteMany();
-  res.status(200).json({
-    message: "deleted",
-  });
-};

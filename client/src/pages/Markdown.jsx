@@ -67,6 +67,15 @@ const Markdown = () => {
     });
   };
 
+  const back = () => {
+    navigate(-1);
+    setispopUp(false);
+  };
+
+  // know that if user pressed browser back button
+  window.onpopstate = () => {
+    setispopUp(false);
+  };
   return (
     <>
       {ispopUp && <PopupContainer heading={"Publish this article on ?"} />}
@@ -91,7 +100,7 @@ const Markdown = () => {
             )}
           </div>
           <div className={style.rt_btn}>
-            <div onClick={() => navigate(-1)}>
+            <div onClick={back}>
               <BiArrowBack size={25} />
             </div>
             <button onClick={open}>
