@@ -4,7 +4,7 @@ const instatnce = axios.create({
   baseURL:
     mode === "development"
       ? "http://localhost:8000/api"
-      : import.meta.env.VITE_APP_HOST,
+      : "https://easyblogproject.herokuapp.com/api",
 });
 
 export default instatnce;
