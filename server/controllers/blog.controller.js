@@ -105,7 +105,7 @@ export const postBlog = async (req, res) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: hashnode_authorization,
+          "Authorization": hashnode_authorization,
         },
         body: JSON.stringify({ query }),
       };
@@ -140,8 +140,7 @@ export const postBlog = async (req, res) => {
 
 // this is the code for deleting the blog
 export const deleteBlog = async (req, res) => {
-  const { hashnodeblogid, mongoblogid } = req.params;
-  const { hashnode_authorization } = req.body;
+  const { hashnodeblogid, mongoblogid, hashnode_authorization } = req.params;
 
   // delete from hashnode
   const hashnodeUrl = "https://api.hashnode.com";
@@ -158,7 +157,7 @@ export const deleteBlog = async (req, res) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: hashnode_authorization,
+      "Authorization": hashnode_authorization,
     },
     body: JSON.stringify({ query }),
   };

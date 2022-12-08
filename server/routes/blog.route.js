@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.post("/post", postBlog);
 router.get("/getblogbyid/:blogid", getBlogById);
-router.delete("/delete/:hashnodeblogid/:mongoblogid", deleteBlog);
+router.delete("/delete/:hashnodeblogid/:mongoblogid/:hashnode_authorization", deleteBlog);
 router.patch("/update", updateBlog);
 router.get("/search/:search", searchBlog);
 

@@ -21,12 +21,12 @@ const AreYousure = () => {
   const [loadingDelete, setloadingDelete] = useState(false);
   const deletePost = async () => {
     setloadingDelete(true);
+    const { hashblogid, mongoblogid } = ids;
+    const hashnode_authorization = user.api_token.hashnode_authorization;
     try {
+      console.log(user?.api_token.hashnode_authorization);
       const res = await axios.delete(
-        `/blog/delete/${ids.hashblogid}/${ids.mongoblogid}`,
-        {
-          hashnode_authorization: user?.api_token.hashnode_authorization,
-        }
+        `/blog/delete/${hashblogid}/${ids.mongoblogid}/${hashnode_authorization}`
       );
       if (res.status === 200) {
         setMyBlog((prev) => {

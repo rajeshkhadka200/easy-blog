@@ -1,5 +1,5 @@
 import axios from "axios";
-let mode = "prod";
+let mode = "dev";
 const instatnce = axios.create({
   baseURL:
     mode === "dev"
