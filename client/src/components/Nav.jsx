@@ -92,7 +92,7 @@ const Nav = () => {
           >
             <div
               onClick={() => {
-                window.open("https://localhost:3000", "_easy");
+                window.open("https://www.youtube.com/watch?v=5sh75GbRSRU", "_easy");
               }}
               className={styles.watch}
             >
