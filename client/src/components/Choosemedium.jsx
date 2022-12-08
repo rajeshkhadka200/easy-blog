@@ -140,8 +140,18 @@ const ChooseMedium = () => {
         </div>
 
         <div className={style.btnGrp}>
-          <button onClick={close}>Cancel</button>
-          <button onClick={postBlog}>
+          <button
+            id={isloading && "not_allowed"}
+            disabled={isloading}
+            onClick={close}
+          >
+            Cancel
+          </button>
+          <button
+            id={isloading && "not_allowed"}
+            disabled={isloading}
+            onClick={postBlog}
+          >
             {isloading ? <Loading size={18} /> : "Post"}
           </button>
         </div>

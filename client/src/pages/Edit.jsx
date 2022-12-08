@@ -33,7 +33,6 @@ const Edit = () => {
         ["cover"]: res.data.cover,
         ["_id"]: res.data._id,
         ["published_on"]: res.data.published_on,
-        ["cover"] : res.data.cover,
       });
       setfromDB(res.data);
     };
