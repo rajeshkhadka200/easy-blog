@@ -11,8 +11,9 @@
 }
 .card img {
   border-radius: 0px;
-  width: 145px;
+  height: 145px;
   width: 100%;
+  object-fit: cover;
 }
 
 .card .card_body {
