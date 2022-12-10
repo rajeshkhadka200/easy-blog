@@ -25,7 +25,6 @@ const Row = ({ blog, sn }) => {
   };
   return (
     <>
-      {ispopUp && <PopupContainer heading={"Are you sure ?"} />}
       <div className={style.row}>
         <div className={style.sn}>{sn + 1}</div>
         <div className={style.title}>
@@ -35,14 +34,23 @@ const Row = ({ blog, sn }) => {
           <div className={style.blogTitle}>{blog?.title}</div>
         </div>
         <div className={style.readOn}>
-          <SiHashnode className={style.hashnode} />
-          <img
-            onClick={() => {
-              window.open(blog?.original_link, "_blank");
-            }}
-            className={style.dev}
-            src="/dev.svg"
-          />
+          {blog?.remote_id.hashnode !== "" && (
+            <SiHashnode
+              onClick={() => {
+                alert("Hashnode URL not available");
+              }}
+              className={style.hashnode}
+            />
+          )}
+          {blog?.remote_id.dev !== "" && (
+            <img
+              onClick={() => {
+                window.open(blog?.original_link, "_blank");
+              }}
+              className={style.dev}
+              src="/dev.svg"
+            />
+          )}
         </div>
         <div className={style.added_date}>{blog?.published_on}</div>
 

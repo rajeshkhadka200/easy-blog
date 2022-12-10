@@ -14,8 +14,11 @@ const Dashboard = () => {
     return <Navigate to="/" replace />;
   }
 
+  const { modal } = useContext(ContexStore);
+  const [ispopUp, setispopUp] = modal;
   return (
     <>
+      {ispopUp && <PopupContainer heading={"Are you sure ?"} />}
       <div className="sidebar_con">
         <Sidebar />
         <div className={style.dash_right_side_content}>

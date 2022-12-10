@@ -45,9 +45,9 @@ const ChooseMedium = () => {
       return;
     }
 
-    if (blog.title === "") {
+    if (blog.title === "" || blog.title.length < 8) {
       setisloading(false);
-      toast.info("Please enter a title");
+      toast.info("Make sure your title is atleast 8 characters long");
       return;
     }
     // check if the user has not selected any platform
