@@ -13,7 +13,7 @@ const DashBoardHeader = ({ title }) => {
     try {
       const res = await axios.get(`/blog/search/${query}`);
       if (res.status === 200) {
-        setsearchBlog(res.data);
+        setsearchBlog(res);
       }
     } catch (error) {
       console.log(error);

@@ -13,7 +13,13 @@ const Card = ({ blog }) => {
           </div>
           <div className={style.bottom}>
             <span>{blog?.published_on}</span>
-            <span>
+            <span
+              onClick={() => {
+                blog.original_link
+                  ? window.open(blog?.original_link, "_blank")
+                  : alert("Dev URL not available");
+              }}
+            >
               <HiArrowTopRightOnSquare size={15} />
             </span>
           </div>

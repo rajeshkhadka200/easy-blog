@@ -34,10 +34,10 @@ const Community = () => {
               return <Card key={blog._id} blog={blog} />;
             })}
 
-          {/* {searchBlog.length > 0 &&
+          {searchBlog.length > 0 &&
             searchBlog.map((blog) => {
               return <Card key={blog._id} blog={blog} />;
-            })} */}
+            })}
         </div>
       </div>
     </div>

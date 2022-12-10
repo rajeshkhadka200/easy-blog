@@ -317,12 +317,19 @@ export const getAllBlog = async (req, res) => {
 };
 
 export const searchBlog = async (req, res) => {
-  const { search } = req.params;
-  const regex = new RegExp(search, "i");
-  const searchBlog = await blogModal.find({
-    $or: [{ title: regex }, { markdown: regex }],
-  });
+  try {
+    const { search } = req.params;
+    const blog = await blogModal.find({
+      title: { $regex: search },
+    });
+    if (blog.length === 0) {
+      return res.status(203).json({  msg: "blog not found" });
+    }
+    res.status(200).send( blog );
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ msg: "Internal server error" });
+  }
 
-  res.status(200).send(searchBlog);
-  return;
+
 };
