@@ -1,4 +1,5 @@
 import express from "express";
+import { getAllUser } from "../controllers/blog.controller.js";
 import {
   addKeys,
   auth,
@@ -15,5 +16,5 @@ router.get("/getuser", authMiddleware, getUser); // get user
 router.patch("/addkey/:userId", addKeys);
 router.get("/getmyblog/:userId", getMyBlog);
 router.delete("/logout", logout); // get user
-
+router.get("/getall", getAllUser);
 export default router;

@@ -10,11 +10,13 @@ export const postBlog = async (req, res) => {
   const { blog } = req.body;
   const { user_id, profile_pic } = req.body;
   const { post_to } = req.body.blog;
+  console.log(post_to);
   const user = await User.findById(user_id);
   const { api_token } = user;
   const { hashnode_authorization, hashnode_publicationId, dev_apikey } =
     api_token;
   //remove all white spaces from the image url
+  console.log(api_token);
   const cover = req.body.cover.replace(/\s/g, "");
   const blogOndb = {
     title: blog.title,
@@ -73,6 +75,7 @@ export const postBlog = async (req, res) => {
 
   // post to hashnode
   if (post_to.hashnode) {
+    console.log("hashnode");
     const hashnodeMarkdown = blog.markdown.replace(/\n/g, "<br>");
 
     const hashnodeUrl = "https://api.hashnode.com";
@@ -105,7 +108,7 @@ export const postBlog = async (req, res) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": hashnode_authorization,
+          Authorization: hashnode_authorization,
         },
         body: JSON.stringify({ query }),
       };
@@ -115,7 +118,6 @@ export const postBlog = async (req, res) => {
       blogOndb.remote_id.hashnode = _id;
     } catch (error) {
       console.log(error);
-
       res.status(400).json({
         message: "Sorry, we are unable to post, Hashnode",
       });
@@ -157,7 +159,7 @@ export const deleteBlog = async (req, res) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": hashnode_authorization,
+      Authorization: hashnode_authorization,
     },
     body: JSON.stringify({ query }),
   };
@@ -201,6 +203,8 @@ export const getBlogById = async (req, res) => {
 };
 // update to the hashnode and dev
 export const updateBlog = async (req, res) => {
+  console.log(req.body);
+  console.log("hello");
   const { blog, api_token, remote_id } = req.body; // api token is the user api token
   const { dev_apikey, hashnode_publicationId, hashnode_authorization } =
     api_token;
@@ -315,21 +319,8 @@ export const getAllBlog = async (req, res) => {
   res.status(200).send(allBlog);
   return;
 };
-
-export const searchBlog = async (req, res) => {
-  try {
-    const { search } = req.params;
-    const blog = await blogModal.find({
-      title: { $regex: search },
-    });
-    if (blog.length === 0) {
-      return res.status(203).json({  msg: "blog not found" });
-    }
-    res.status(200).send( blog );
-  } catch (error) {
-    console.log(error.message);
-    res.status(500).json({ msg: "Internal server error" });
-  }
-
-
+export const getAllUser = async (req, res) => {
+  const allUser = await User.find();
+  res.status(200).send(allUser);
+  return;
 };

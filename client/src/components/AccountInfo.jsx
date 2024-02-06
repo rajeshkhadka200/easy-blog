@@ -14,9 +14,9 @@ const AccountInfo = () => {
   const [user, setuser] = userData;
 
   const [keys, setKeys] = useState({
-    dev_apikey: "yNecF91d29yAA3F8SLKbHeDA",
-    hashnode_publicationId: "637f63cd0d2fc8df7adde9d2",
-    hashnode_authorization: "5131be37-f7e2-4634-9b29-e9660b76bc3a",
+    dev_apikey: "",
+    hashnode_publicationId: "",
+    hashnode_authorization: "",
   });
 
   const handleChange = (e) => {
@@ -94,7 +94,7 @@ const AccountInfo = () => {
             id={isloading && "not_allowed"}
             disabled={isloading}
             type="button"
-            onClick={handleSubmit}
+            onClick={() => handleSubmit()}
           >
             {isloading ? <Loading size={15} /> : "Save"}
           </button>

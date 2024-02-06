@@ -4,7 +4,7 @@ const instatnce = axios.create({
   baseURL:
     mode === "dev"
       ? "http://localhost:8000/api"
-      : "https://easyblogproject.herokuapp.com/api",
+      : "https://easy-blog-server.onrender.com/api",
 });
 
 export default instatnce;
